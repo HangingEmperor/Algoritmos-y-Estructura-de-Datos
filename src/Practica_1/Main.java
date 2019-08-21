@@ -28,6 +28,7 @@ public class Main {
                 case 1:
                     System.out.println("Nombre de la ciudad:");
                     String nombreCiudad = teclado.nextLine();
+                    //
                     nombreCiudad = teclado.nextLine();
                     System.out.println("Nombre del pais:");
                     String nombrePais = teclado.nextLine();
