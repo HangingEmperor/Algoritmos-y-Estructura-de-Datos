@@ -20,7 +20,7 @@ public class Main {
             System.out.println(" 6 .- Buscar pais.");
             System.out.println(" 0 .- Salir.");
             int nombre = teclado.nextInt();
-            //String country, String city, String continent, float latitudeDecimals, float longitudeDecimals, String latitude, String longitude
+
             switch (nombre) {
                 case 0:
                     exit = true;
@@ -95,13 +95,4 @@ public class Main {
             }
         }
     }
-
 }
-/*
-a. La información debe ser insertada en al ArrayList.
-b. Mostrar la información de inicio a fin con que cuenta el ArrayList.
-c. Mostrar la información fin a inicio con que cuenta el ArrayList.
-d. Mostrar la información a partir de la mitad del ArrayList hasta el final.
-e. Mostrar la información a partir de la mitad del ArrayList hasta el inicio.
-f. Capturar desde el teclado el nombre de una ciudad y mostrar la información
-de ella y si no se encuentra que muestre un msg. Indicándolo.*/
