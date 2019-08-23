@@ -24,7 +24,6 @@ public class Biblioteca {
 
     public ArrayList<Libro> ordenarAlfabeticoAutores(ArrayList<Libro> libros) {
         libros.sort((obj1, obj2) -> obj1.getAuthor().compareTo(obj2.getAuthor()));
-
         return libros;
     }
 

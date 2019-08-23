@@ -13,5 +13,6 @@ public class Main {
         biblioteca.addLibro(mex2);
 
         System.out.println(biblioteca.ordenarAlfabeticoAutores(biblioteca.getEjemplares()));
+        System.out.println(biblioteca.ordenarAlfabeticoTitulo(biblioteca.getEjemplares()));
     }
 }
