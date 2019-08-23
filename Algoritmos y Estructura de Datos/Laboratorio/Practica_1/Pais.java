@@ -1,4 +1,4 @@
-package Practica_1;
+package Laboratorio.Practica_1;
 
 public class Pais {
     private String country;
