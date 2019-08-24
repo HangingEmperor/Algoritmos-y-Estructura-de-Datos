@@ -127,6 +127,6 @@ public class Libro {
                 ", genre='" + genre + '\'' +
                 ", rating=" + rating +
                 ", image=" + image +
-                '}';
+                "} \n";
     }
 }
