@@ -1,12 +1,11 @@
 package Laboratorio.Practica_1;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        ArrayList<Pais> pais = new ArrayList<Pais>();
+        Data data = new Data();
         Scanner teclado = new Scanner(System.in);
 
         while (true) {
@@ -17,34 +16,34 @@ public class Main {
                 case 0:
                     System.exit(0);
                 case 1:
-                    pais.add(crearPais(teclado));
+                    data.add(crearPais(teclado));
                     break;
                 case 2:
-                    for (int i = 0; i < pais.size(); i++)
-                        mostrarPais(i, pais);
+                    for (int i = 0; i < data.getSize(); i++)
+                        System.out.println("Pais No." + (i + 1) + data.mostrarPais(i));
                     break;
                 case 3:
-                    for (int i = pais.size() - 1; i >= 0; i--)
-                        mostrarPais(i, pais);
+                    for (int i = data.getSize() - 1; i >= 0; i--)
+                        System.out.println("Pais No." + (i + 1) + data.mostrarPais(i));
                     break;
                 case 4:
-                    for (int i = pais.size() / 2; i < pais.size(); i++)
-                        mostrarPais(i, pais);
+                    for (int i = data.getSize() / 2; i < data.getSize(); i++)
+                        System.out.println("Pais No." + (i + 1) + data.mostrarPais(i));
                     break;
                 case 5:
-                    for (int i = pais.size() / 2; i >= 0; i--)
-                        mostrarPais(i, pais);
+                    for (int i = data.getSize() / 2; i >= 0; i--)
+                        System.out.println("Pais No." + (i + 1) + data.mostrarPais(i));
                     break;
                 case 6:
                     System.out.println("Ingrese el nombre de la ciudad que desea buscar:");
                     String name = teclado.nextLine();
                     name = teclado.nextLine();
 
-                    for (int i = 0; i < pais.size(); i++) {
-                        if (pais.get(i).getCity().toLowerCase().equals(name.toLowerCase())) {
-                            mostrarPais(i, pais);
+                    for (int i = 0; i < data.getSize(); i++) {
+                        if (data.getData().get(i).getCity().toLowerCase().equals(name.toLowerCase())) {
+                            System.out.println("Pais No." + (i + 1) + data.mostrarPais(i));
                             break;
-                        } else if (i == pais.size() - 1) {
+                        } else if (i == data.getSize() - 1) {
                             System.out.println("No se encontro.");
                         }
                     }
@@ -55,19 +54,14 @@ public class Main {
         }
     }
 
-    private static void mostrarPais(int i, ArrayList<Pais> pais) {
-        System.out.println("Pais No." + (i + 1));
-        System.out.println(pais.get(i).toString());
-    }
-
     private static void mostrarMenu() {
         System.out.println(" --- Menu --- ");
-        System.out.println(" 1 .- Añadir pais.");
+        System.out.println(" 1 .- Añadir ciudad.");
         System.out.println(" 2 .- Mostrar la informacion de inicio a fin.");
         System.out.println(" 3 .- Mostrar la informacion de fin a inicio.");
         System.out.println(" 4 .- Mostrar la informacion a partir de la mitad hasta el final.");
         System.out.println(" 5 .- Mostrar la informacion a partir de la mitad hasta el inicio.");
-        System.out.println(" 6 .- Buscar pais.");
+        System.out.println(" 6 .- Buscar ciudad.");
         System.out.println(" 0 .- Salir.");
     }
 

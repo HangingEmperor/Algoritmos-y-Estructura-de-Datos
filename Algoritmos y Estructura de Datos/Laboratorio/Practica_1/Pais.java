@@ -1,6 +1,7 @@
 package Laboratorio.Practica_1;
 
 public class Pais {
+
     private String country;
     private String city;
     private String continent;
