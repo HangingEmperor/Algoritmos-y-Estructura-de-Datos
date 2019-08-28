@@ -2,8 +2,16 @@ package Laboratorio.Practica_1;
 
 import java.util.Scanner;
 
+/**
+ * Clase que nos permite hacer la parte visual del programa
+ *
+ * @author Omar
+ */
 public class Interfaz {
 
+    /**
+     * Funcion para mostrar todas las opciones disponibles en el menu.
+     */
     public static void mostrarMenu() {
         System.out.println(" --- Menu --- ");
         System.out.println(" 1 .- Añadir ciudad.");
@@ -15,6 +23,12 @@ public class Interfaz {
         System.out.println(" 0 .- Salir.");
     }
 
+    /**
+     * Funcion que solicita datos al usuario para despues crear un objeto Pais
+     *
+     * @param teclado Parametro para poder obtener los datos desde el teclado
+     * @return Regresa un objeto Pais
+     */
     public static Pais crearPais(Scanner teclado) {
         System.out.println("Nombre de la ciudad:");
         String nombreCiudad = teclado.nextLine();
