@@ -169,6 +169,6 @@ public class Pais {
         return "Pais = " + country + ", Ciudad = " + city +
                 ", Continente = " + continent + ", Latitud en Decimales = " +
                 latitudeDecimals + ", Longitud en Decimales = " + longitudeDecimals +
-                ", Latitud en GMS = " + latitude + ", Longitud en GMS = " + longitude;
+                ", \n Latitud en GMS = " + latitude + ", Longitud en GMS = " + longitude;
     }
 }
