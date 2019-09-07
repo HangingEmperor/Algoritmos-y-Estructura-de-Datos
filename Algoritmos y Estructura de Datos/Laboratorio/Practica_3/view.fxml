@@ -1,45 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
-            fx:controller="practica_3.Controller">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="410.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="Laboratorio.Practica_3.Controller">
     <children>
         <Pane layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" height="194.0" layoutX="92.0" stroke="BLACK"
+                <Rectangle arcHeight="5.0" arcWidth="5.0" height="194.0" layoutX="84.0" layoutY="-8.0" stroke="BLACK"
                            strokeType="INSIDE" width="16.0"/>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" height="17.0" layoutX="16.0" layoutY="178.0"
-                           onDragDetected="#painy" stroke="BLACK" strokeType="INSIDE" width="168.0"/>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" height="17.0" layoutX="8.0" layoutY="178.0" stroke="BLACK"
+                           strokeType="INSIDE" width="168.0"/>
+                <VBox fx:id="torreHanoi1" alignment="BOTTOM_CENTER" layoutX="7.0" prefHeight="178.0" prefWidth="168.0">
+                    <children>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0"
+                                style="-fx-background-color: #E6804D;" text="Disco 6" textFill="WHITE"/>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0"
+                                style="-fx-background-color: #E6E64D;" text="Disco 5" textFill="WHITE"/>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0"
+                                style="-fx-background-color: #B3E6B3;" text="Disco 4" textFill="WHITE"/>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0"
+                                style="-fx-background-color: #669966;" text="Disco 3" textFill="WHITE"/>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0"
+                                style="-fx-background-color: #99b3ff;" text="Disco 2" textFill="WHITE"/>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0"
+                                prefWidth="152.0" style="-fx-background-color: #334db3;" text="Disco 1"
+                                textFill="WHITE"/>
+                    </children>
+                </VBox>
             </children>
         </Pane>
-        <Label layoutX="187.0" layoutY="14.0" text="Torre de Hanoi">
-            <font>
-                <Font size="34.0"/>
-            </font>
-        </Label>
         <Pane layoutX="201.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" height="194.0" layoutX="92.0" stroke="BLACK"
+                <Rectangle arcHeight="5.0" arcWidth="5.0" height="194.0" layoutX="92.0" layoutY="-8.0" stroke="BLACK"
                            strokeType="INSIDE" width="16.0"/>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" height="17.0" layoutX="16.0" layoutY="178.0" stroke="BLACK"
                            strokeType="INSIDE" width="168.0"/>
+                <VBox fx:id="torreHanoi2" layoutX="17.0" prefHeight="178.0" prefWidth="168.0"/>
             </children>
         </Pane>
         <Pane layoutX="401.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" height="194.0" layoutX="92.0" stroke="BLACK"
+                <Rectangle arcHeight="5.0" arcWidth="5.0" height="194.0" layoutX="92.0" layoutY="-8.0" stroke="BLACK"
                            strokeType="INSIDE" width="16.0"/>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" height="17.0" layoutX="16.0" layoutY="178.0" stroke="BLACK"
                            strokeType="INSIDE" width="168.0"/>
+                <VBox fx:id="torreHanoi3" layoutX="17.0" prefHeight="178.0" prefWidth="168.0"/>
             </children>
         </Pane>
-        <TextArea fx:id="textAreaIntrucciones" editable="false" layoutX="104.0" layoutY="310.0" prefHeight="55.0"
-                  prefWidth="394.0"/>
+        <TextArea fx:id="textAreaIntrucciones" editable="false" layoutX="22.0" layoutY="300.0" prefHeight="101.0"
+                  prefWidth="364.0"/>
+        <Button fx:id="buttonNextMove" defaultButton="true" layoutX="435.0" layoutY="300.0" mnemonicParsing="false"
+                onAction="#nextMove" text="Siguiente movimiento"/>
+        <Label layoutX="177.0" layoutY="14.0" prefHeight="50.0" prefWidth="247.0" text="Torre de Hanoi">
+            <font>
+                <Font name="System Bold" size="34.0"/>
+            </font>
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop color="#1f1fbf"/>
+                        <Stop color="#1f1fbf" offset="0.011257257968953665"/>
+                        <Stop color="#1f1fbf" offset="0.04123711340206185"/>
+                        <Stop color="#1d1dbf" offset="0.11494252873563218"/>
+                        <Stop color="#178fe5e7" offset="0.31322826559228956"/>
+                        <Stop color="#27b91a" offset="0.48109965635738833"/>
+                        <Stop color="#d3da09" offset="0.622388118655449"/>
+                        <Stop color="#d95000" offset="0.957854406130268"/>
+                        <Stop color="#d95000" offset="1.0"/>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
     </children>
 </AnchorPane>

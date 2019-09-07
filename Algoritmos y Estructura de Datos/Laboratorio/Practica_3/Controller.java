@@ -1,7 +1,12 @@
 package Laboratorio.Practica_3;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
 
 import javax.swing.*;
 import java.net.URL;
@@ -12,12 +17,25 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    public static void Hanoi(int n, int origen, int auxiliar, int destino) {
+    @FXML
+    private Button buttonNextMove;
+    @FXML
+    private TextArea textAreaIntrucciones;
+    @FXML
+    private VBox torreHanoi2;
+    @FXML
+    private VBox torreHanoi1;
+    @FXML
+    private VBox torreHanoi3;
+
+    void Hanoi(int n, int origen, int auxiliar, int destino) {
         if (n == 1)
-            System.out.println("mover disco de " + origen + " a " + destino);
+            textAreaIntrucciones.setText(textAreaIntrucciones.getText()
+                    + "Mover disco de " + origen + " a " + destino + "\n");
         else {
             Hanoi(n - 1, origen, destino, auxiliar);
-            System.out.println("mover disco de " + origen + " a " + destino);
+            textAreaIntrucciones.setText(textAreaIntrucciones.getText()
+                    + "Mover disco de " + origen + " a " + destino + "\n");
             Hanoi(n - 1, auxiliar, origen, destino);
         }
     }
@@ -40,8 +58,17 @@ public class Controller implements Initializable {
 
     }
 
+    @FXML
+    void nextMove(ActionEvent event) {
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        for (int i = 0; i < 6; i++) {
+            torreHanoi1.getChildren().get(i).setVisible(false);
+        }
+
         List<String> choices = new ArrayList<>();
         choices.add("4");
         choices.add("5");
@@ -55,6 +82,9 @@ public class Controller implements Initializable {
         Optional<String> result = dialog.showAndWait();
 
         Hanoi(Integer.parseInt(result.get()), 1, 2, 3);
+        for (int i = 0; i < Integer.parseInt(result.get()); i++) {
+            torreHanoi1.getChildren().get(5 - i).setVisible(true);
+        }
     }
 
 }
