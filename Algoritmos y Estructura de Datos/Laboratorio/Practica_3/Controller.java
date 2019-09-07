@@ -18,17 +18,17 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    private Button buttonNextMove;
-    @FXML
-    private TextArea textAreaIntrucciones;
+    private VBox torreHanoi1;
     @FXML
     private VBox torreHanoi2;
     @FXML
-    private VBox torreHanoi1;
-    @FXML
     private VBox torreHanoi3;
+    @FXML
+    private Button buttonNextMove;
+    @FXML
+    private TextArea textAreaIntrucciones;
 
-    void Hanoi(int n, int origen, int auxiliar, int destino) {
+    private void Hanoi(int n, int origen, int auxiliar, int destino) {
         if (n == 1)
             textAreaIntrucciones.setText(textAreaIntrucciones.getText()
                     + "Mover disco de " + origen + " a " + destino + "\n");
@@ -40,7 +40,7 @@ public class Controller implements Initializable {
         }
     }
 
-    public static void mov(int D, String inicio, String auxiliar, String fin) {
+    private void mov(int D, String inicio, String auxiliar, String fin) {
 
         if (D == 0) return;
 
