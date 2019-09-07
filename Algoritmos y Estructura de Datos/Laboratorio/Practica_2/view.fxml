@@ -108,9 +108,8 @@
                 <Pane layoutX="39.0" layoutY="240.0" prefHeight="200.0" prefWidth="320.0"
                       style="-fx-background-color: white;">
                     <children>
-                        <Label fx:id="labelMessage" contentDisplay="TOP" layoutX="55.0" layoutY="83.0" prefHeight="17.0"
-                               prefWidth="242.0" text="Empieza a agregar colores!" textAlignment="CENTER"
-                               textOverrun="CENTER_WORD_ELLIPSIS"/>
+                        <TextArea fx:id="textAreaMessage" layoutY="1.0" prefHeight="200.0" prefWidth="320.0"
+                                  promptText="Empieza a agregar colores!"/>
                     </children>
                 </Pane>
                 <Button fx:id="buttonAddColor" layoutX="140.0" layoutY="105.0" mnemonicParsing="false"

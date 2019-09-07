@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
@@ -25,15 +25,13 @@ public class Controller implements Initializable {
     private int pointer = 10;
 
     @FXML
-    private Label labelMessage;
-    @FXML
     private GridPane gridPaneStack;
-    @FXML
-    private Button buttonAddColor;
     @FXML
     private ColorPicker colorPicker;
     @FXML
     private Button buttonRemoveTop;
+    @FXML
+    private TextArea textAreaMessage;
 
     /**
      * Funcion que remueve el ultimo color agregado de la pila
@@ -48,10 +46,11 @@ public class Controller implements Initializable {
             gridPaneStack.getChildren().get(pointer).setDisable(true);
 
             pointer++;
-            labelMessage.setText("Se ha removido un color: " + stack.peek().getFill());
+            textAreaMessage.setText(textAreaMessage.getText() + "Se ha removido un color: "
+                    + stack.peek().getFill() + "\n");
             stack.pop();
         } else {
-            labelMessage.setText("La pila esta vacia.");
+            textAreaMessage.setText(textAreaMessage.getText() + "La pila esta vacia. \n");
             buttonRemoveTop.setDisable(true);
         }
     }
@@ -72,11 +71,12 @@ public class Controller implements Initializable {
             }
         }
         Stack<BackgroundFill> temporalStack = new Stack<>();
-
         int size = stack.size();
-        labelMessage.setText("Se ha removido un color: "
+
+        textAreaMessage.setText(textAreaMessage.getText()
+                + "Se ha removido un color: "
                 + ((Button) event.getSource()).getBackground().getFills().get(0).getFill()
-                + "en la posicion: " + position);
+                + "en la posicion: " + (position + 1) + "\n");
 
         for (int i = position; i < size; i++) {
             gridPaneStack.getChildren().get(9 - i).setVisible(false);
@@ -93,7 +93,6 @@ public class Controller implements Initializable {
             gridPaneStack.getChildren().get(9 - i).setDisable(false);
             stack.push(temporalStack.pop());
             ((Button) gridPaneStack.getChildren().get(9 - i)).setBackground(new Background(stack.peek()));
-
         }
     }
 
@@ -106,14 +105,14 @@ public class Controller implements Initializable {
     public void addColorToStack(ActionEvent event) {
         if (stack.size() < 10) {
             pointer--;
-            labelMessage.setText("Se agrego un nuevo color: " + colorPicker.getValue());
-
+            textAreaMessage.setText(textAreaMessage.getText() + "Se agrego un nuevo color: "
+                    + colorPicker.getValue() + "\n");
             stack.push(new BackgroundFill(colorPicker.getValue(), null, null));
             gridPaneStack.getChildren().get(pointer).setVisible(true);
             ((Button) gridPaneStack.getChildren().get(pointer)).setBackground(new Background(stack.peek()));
             gridPaneStack.getChildren().get(pointer).setDisable(false);
         } else {
-            labelMessage.setText("La pila esta llena.");
+            textAreaMessage.setText(textAreaMessage.getText() + "La pila esta llena. \n");
         }
         buttonRemoveTop.setDisable(false);
     }
@@ -121,8 +120,8 @@ public class Controller implements Initializable {
     /**
      * Inicializa los requisitos iniciales del programa
      *
-     * @param location
-     * @param resources
+     * @param location  Descargar contenido
+     * @param resources Importar recursos
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
