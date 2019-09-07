@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;"
-            xmlns="http://javafx.com/javafx/8" fx:controller="sample.Controller">
+            xmlns="http://javafx.com/javafx/8" fx:controller="Laboratorio.Practica_2.Controller">
     <children>
         <GridPane fx:id="gridPaneStack" layoutX="460.0" layoutY="42.0" prefHeight="516.0" prefWidth="126.0">
             <columnConstraints>
@@ -41,10 +41,10 @@
                         prefWidth="358.0" GridPane.rowIndex="6"/>
                 <Button fx:id="button2" mnemonicParsing="false" onAction="#removeColorOnStack" prefHeight="408.0"
                         prefWidth="307.0" GridPane.rowIndex="7"/>
-                <Button fx:id="button0" mnemonicParsing="false" onAction="#removeColorOnStack" prefHeight="461.0"
-                        prefWidth="249.0" GridPane.rowIndex="9"/>
-                <Button fx:id="button1" mnemonicParsing="false" onAction="#removeColorOnStack" prefHeight="269.0"
-                        prefWidth="232.0" GridPane.rowIndex="8"/>
+                <Button fx:id="button1" mnemonicParsing="false" onAction="#removeColorOnStack" prefHeight="88.0"
+                        prefWidth="220.0" GridPane.rowIndex="8"/>
+                <Button fx:id="button0" mnemonicParsing="false" onAction="#removeColorOnStack" prefHeight="232.0"
+                        prefWidth="258.0" GridPane.rowIndex="9"/>
             </children>
         </GridPane>
         <Pane layoutX="14.0" layoutY="42.0" prefHeight="516.0" prefWidth="406.0" style="-fx-background-color: cccccc;">
@@ -108,7 +108,9 @@
                 <Pane layoutX="39.0" layoutY="240.0" prefHeight="200.0" prefWidth="320.0"
                       style="-fx-background-color: white;">
                     <children>
-                        <Label fx:id="labelMessage" layoutX="81.0" layoutY="93.0" text="Empieza a agregar colores!"/>
+                        <Label fx:id="labelMessage" contentDisplay="TOP" layoutX="55.0" layoutY="83.0" prefHeight="17.0"
+                               prefWidth="242.0" text="Empieza a agregar colores!" textAlignment="CENTER"
+                               textOverrun="CENTER_WORD_ELLIPSIS"/>
                     </children>
                 </Pane>
                 <Button fx:id="buttonAddColor" layoutX="140.0" layoutY="105.0" mnemonicParsing="false"
@@ -132,5 +134,7 @@
                 </RadialGradient>
             </textFill>
         </Label>
+        <Button fx:id="buttonRemoveTop" defaultButton="true" layoutX="465.0" layoutY="561.0" mnemonicParsing="false"
+                onAction="#removeTop" text="Eliminar el ultimo"/>
     </children>
 </AnchorPane>
