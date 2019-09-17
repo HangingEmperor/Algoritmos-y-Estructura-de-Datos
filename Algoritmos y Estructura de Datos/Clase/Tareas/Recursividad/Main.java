@@ -3,7 +3,7 @@ package Clase.Tareas.Recursividad;
 public class Main {
 
     public static void main(String[] args) {
-        Recursividad.verSerie(10);
-        System.out.println(Recursividad.multiplicacionSucesiva(2, 5));
+        int[] array = {5, 4, 3, 2, 1};
+        System.out.println("7 es primo? = " + Recursividad.esPrimo(7, 2));
     }
 }

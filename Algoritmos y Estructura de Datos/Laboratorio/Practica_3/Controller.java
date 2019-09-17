@@ -8,7 +8,6 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,39 +27,18 @@ public class Controller implements Initializable {
     @FXML
     private TextArea textAreaIntrucciones;
 
-    private void Hanoi(int n, int origen, int auxiliar, int destino) {
-        if (n == 1)
-            textAreaIntrucciones.setText(textAreaIntrucciones.getText()
-                    + "Mover disco de " + origen + " a " + destino + "\n");
-        else {
-            Hanoi(n - 1, origen, destino, auxiliar);
-            textAreaIntrucciones.setText(textAreaIntrucciones.getText()
-                    + "Mover disco de " + origen + " a " + destino + "\n");
-            Hanoi(n - 1, auxiliar, origen, destino);
-        }
-    }
-
     private void mov(int D, String inicio, String auxiliar, String fin) {
-
-        if (D == 0) return;
-
-        else ;
-
-        String salida;
-
+        if (D == 0)
+            return;
         mov(D - 1, inicio, fin, auxiliar);
-
-        salida = ("Mover Disco #" + D + " de " + inicio + " a " + fin);
-
-        JOptionPane.showMessageDialog(null, salida, "Torres de Hanoi", JOptionPane.INFORMATION_MESSAGE);
-
+        textAreaIntrucciones.setText(textAreaIntrucciones.getText()
+                + "Mover Disco #" + D + " de la torre " + inicio + " a la torre " + fin + "\n");
         mov(D - 1, auxiliar, inicio, fin);
-
     }
 
     @FXML
     void nextMove(ActionEvent event) {
-
+        System.out.println(textAreaIntrucciones.getText(13, 14));
     }
 
     @Override
@@ -81,10 +59,11 @@ public class Controller implements Initializable {
 
         Optional<String> result = dialog.showAndWait();
 
-        Hanoi(Integer.parseInt(result.get()), 1, 2, 3);
+        mov(Integer.parseInt(result.get()), "1", "2", "3");
+        //Hanoi(Integer.parseInt(result.get()), 1, 2, 3);
         for (int i = 0; i < Integer.parseInt(result.get()); i++) {
+            /* Poner que segun el tamaño, el disco sea el 1 y luego vaya descendiendo*/
             torreHanoi1.getChildren().get(5 - i).setVisible(true);
         }
     }
-
 }
