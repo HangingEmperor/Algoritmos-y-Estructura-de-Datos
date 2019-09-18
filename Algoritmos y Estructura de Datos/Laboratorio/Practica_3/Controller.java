@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    private int sizeDisk;
     @FXML
     private VBox torreHanoi1;
     @FXML
@@ -65,7 +64,6 @@ public class Controller implements Initializable {
         dialog.setHeaderText("Elige la cantidad de discos que de    seas en la torre.");
         dialog.setContentText("Discos:");
         Optional<String> result = dialog.showAndWait();
-        this.sizeDisk = Integer.parseInt(result.get());
 
         hanoi(Integer.parseInt(result.get()), "1", "2", "3");
         for (int i = 0; i < Integer.parseInt(result.get()); i++) {
