@@ -18,11 +18,11 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    private VBox torreHanoi1;
+    public static VBox torreHanoi1;
     @FXML
-    private VBox torreHanoi2;
+    public static VBox torreHanoi2;
     @FXML
-    private VBox torreHanoi3;
+    public static VBox torreHanoi3;
     @FXML
     private Button buttonNextMove;
     @FXML
@@ -37,12 +37,16 @@ public class Controller implements Initializable {
         hanoi(discos - 1, auxiliar, inicio, fin);
     }
 
-    private void hanoiColocation(int posDisco, ObservableList<Button> disco, VBox torreHanoi1, VBox torreHanoi2, VBox torreHanoi3) {
+    private void hanoiColocation(int posDisco, ObservableList<Button> disco, VBox inicio, VBox auxiliar, VBox fin) {
+        torreHanoi1 = inicio;
+        torreHanoi2 = auxiliar;
+        torreHanoi3 = fin;
         if (posDisco == 0)
             return;
-        hanoiColocation(posDisco - 1, disco, torreHanoi1, torreHanoi3, torreHanoi2);
+        hanoiColocation(posDisco - 1, disco, inicio, auxiliar, fin);
+        torreHanoi1.getChildren().add(disco.get(4 - posDisco));
         /*Mover los botones aqui... pero como?*/
-        hanoiColocation(posDisco - 1, disco, torreHanoi2, torreHanoi1, torreHanoi3);
+        hanoiColocation(posDisco - 1, disco, inicio, auxiliar, fin);
     }
 
     @FXML

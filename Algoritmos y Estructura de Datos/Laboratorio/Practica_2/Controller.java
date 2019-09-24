@@ -17,7 +17,7 @@ import java.util.Stack;
 /**
  * Clase que hace funcion como el controlador del programa usando el metodo MVC
  *
- * @author Omar
+ * @author Omar Flores Salazar
  */
 public class Controller implements Initializable {
 
