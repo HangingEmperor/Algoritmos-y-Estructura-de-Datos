@@ -18,39 +18,65 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    public static VBox torreHanoi1;
+    public VBox torreHanoi1;
     @FXML
-    public static VBox torreHanoi2;
+    public VBox torreHanoi2;
     @FXML
-    public static VBox torreHanoi3;
+    public VBox torreHanoi3;
     @FXML
     private Button buttonNextMove;
     @FXML
     private TextArea textAreaIntrucciones;
 
-    private void hanoi(int discos, String inicio, String auxiliar, String fin) {
+    /*
+        Mover Disco #1 de la torre 1 a la torre 2
+        Mover Disco #2 de la torre 1 a la torre 3
+        Mover Disco #1 de la torre 2 a la torre 3
+        Mover Disco #3 de la torre 1 a la torre 2
+        Mover Disco #1 de la torre 3 a la torre 1
+        Mover Disco #2 de la torre 3 a la torre 2
+        Mover Disco #1 de la torre 1 a la torre 2
+        Mover Disco #4 de la torre 1 a la torre 3
+        Mover Disco #1 de la torre 2 a la torre 3
+        Mover Disco #2 de la torre 2 a la torre 1
+        Mover Disco #1 de la torre 3 a la torre 1
+        Mover Disco #3 de la torre 2 a la torre 3
+        Mover Disco #1 de la torre 1 a la torre 2
+        Mover Disco #2 de la torre 1 a la torre 3
+        Mover Disco #1 de la torre 2 a la torre 3
+    */
+
+    private void hanoi(int discos, int inicio, int auxiliar, int fin) {
         if (discos == 0)
             return;
         hanoi(discos - 1, inicio, fin, auxiliar);
+
         textAreaIntrucciones.setText(textAreaIntrucciones.getText()
                 + "Mover Disco #" + discos + " de la torre " + inicio + " a la torre " + fin + "\n");
-        hanoi(discos - 1, auxiliar, inicio, fin);
-    }
+        if (inicio == 1) {
+            if (fin == 2) {
+                torreHanoi2.getChildren().add(torreHanoi1.getChildren().get(6-discos));
+            }
+        }
 
-    private void hanoiColocation(int posDisco, ObservableList<Button> disco, VBox inicio, VBox auxiliar, VBox fin) {
-        torreHanoi1 = inicio;
-        torreHanoi2 = auxiliar;
-        torreHanoi3 = fin;
-        if (posDisco == 0)
-            return;
-        hanoiColocation(posDisco - 1, disco, inicio, auxiliar, fin);
-        torreHanoi1.getChildren().add(disco.get(4 - posDisco));
-        /*Mover los botones aqui... pero como?*/
-        hanoiColocation(posDisco - 1, disco, inicio, auxiliar, fin);
+        hanoi(discos - 1, auxiliar, inicio, fin);
     }
 
     @FXML
     void nextMove(ActionEvent event) {
+    }
+
+    private void hanoiColocation(int posDisco, ObservableList<Button> disco, VBox inicio, VBox auxiliar, VBox fin) {
+        this.torreHanoi1 = inicio;
+        this.torreHanoi2 = auxiliar;
+        this.torreHanoi3 = fin;
+        if (posDisco == 0)
+            return;
+        hanoiColocation(posDisco - 1, disco, inicio, fin, auxiliar);
+
+        torreHanoi1.getChildren().add(disco.get(4 - posDisco));
+
+        hanoiColocation(posDisco - 1, disco, auxiliar, inicio, fin);
     }
 
     @Override
@@ -69,7 +95,7 @@ public class Controller implements Initializable {
         dialog.setContentText("Discos:");
         Optional<String> result = dialog.showAndWait();
 
-        hanoi(Integer.parseInt(result.get()), "1", "2", "3");
+        hanoi(Integer.parseInt(result.get()), 1, 2, 3);
         for (int i = 0; i < Integer.parseInt(result.get()); i++) {
             ((Button) torreHanoi1.getChildren().get(5 - i)).setText("Disco " + (Integer.parseInt(result.get()) - i));
             torreHanoi1.getChildren().get(5 - i).setVisible(true);
