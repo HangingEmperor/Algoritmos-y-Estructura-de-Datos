@@ -5,7 +5,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="410.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="410.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8"
             fx:controller="Laboratorio.Practica_3.Controller">
     <children>
         <Pane layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
@@ -14,23 +14,7 @@
                            strokeType="INSIDE" width="16.0"/>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" height="17.0" layoutX="8.0" layoutY="178.0" stroke="BLACK"
                            strokeType="INSIDE" width="168.0"/>
-                <VBox fx:id="torreHanoi1" alignment="BOTTOM_CENTER" layoutX="7.0" prefHeight="178.0" prefWidth="168.0">
-                    <children>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0"
-                                style="-fx-background-color: #E6804D;" text="Disco 6" textFill="WHITE"/>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0"
-                                style="-fx-background-color: #E6E64D;" text="Disco 5" textFill="WHITE"/>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0"
-                                style="-fx-background-color: #B3E6B3;" text="Disco 4" textFill="WHITE"/>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0"
-                                style="-fx-background-color: #669966;" text="Disco 3" textFill="WHITE"/>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0"
-                                style="-fx-background-color: #99b3ff;" text="Disco 2" textFill="WHITE"/>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0"
-                                prefWidth="152.0" style="-fx-background-color: #334db3;" text="Disco 1"
-                                textFill="WHITE"/>
-                    </children>
-                </VBox>
+                <VBox fx:id="torreHanoi1" alignment="BOTTOM_CENTER" layoutX="7.0" prefHeight="178.0" prefWidth="168.0"/>
             </children>
         </Pane>
         <Pane layoutX="201.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
@@ -53,10 +37,35 @@
                       prefWidth="168.0"/>
             </children>
         </Pane>
+        <Pane layoutX="627.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" height="194.0" layoutX="84.0" layoutY="-8.0" stroke="BLACK"
+                           strokeType="INSIDE" width="16.0"/>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" height="17.0" layoutX="8.0" layoutY="178.0" stroke="BLACK"
+                           strokeType="INSIDE" width="168.0"/>
+                <VBox fx:id="torreHanoi" alignment="BOTTOM_CENTER" layoutX="7.0" prefHeight="178.0" prefWidth="168.0">
+                    <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0"
+                                prefWidth="152.0" style="-fx-background-color: #334db3;" text="Disco 1"
+                                textFill="WHITE"/>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0"
+                                style="-fx-background-color: #99b3ff;" text="Disco 2" textFill="WHITE"/>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0"
+                                style="-fx-background-color: #669966;" text="Disco 3" textFill="WHITE"/>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0"
+                                style="-fx-background-color: #B3E6B3;" text="Disco 4" textFill="WHITE"/>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0"
+                                style="-fx-background-color: #E6E64D;" text="Disco 5" textFill="WHITE"/>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0"
+                                style="-fx-background-color: #E6804D;" text="Disco 6" textFill="WHITE"/>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
         <TextArea fx:id="textAreaIntrucciones" editable="false" layoutX="22.0" layoutY="300.0" prefHeight="101.0"
                   prefWidth="364.0"/>
-        <Button fx:id="buttonNextMove" defaultButton="true" layoutX="435.0" layoutY="300.0" mnemonicParsing="false"
-                onAction="#nextMove" text="Siguiente movimiento"/>
+        <Button fx:id="buttonNextMove" defaultButton="true" layoutX="477.0" layoutY="300.0" mnemonicParsing="false"
+                onAction="#nextMove" text="Iniciar"/>
         <Label layoutX="177.0" layoutY="14.0" prefHeight="50.0" prefWidth="247.0" text="Torre de Hanoi">
             <font>
                 <Font name="System Bold" size="34.0"/>

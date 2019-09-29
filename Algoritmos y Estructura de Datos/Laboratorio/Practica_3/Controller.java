@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
+    private VBox torreHanoi;
+    @FXML
     public VBox torreHanoi1;
     @FXML
     public VBox torreHanoi2;
@@ -27,6 +29,7 @@ public class Controller implements Initializable {
     private Button buttonNextMove;
     @FXML
     private TextArea textAreaIntrucciones;
+    private int size = 0;
 
     /*
         Mover Disco #1 de la torre 1 a la torre 2
@@ -53,10 +56,18 @@ public class Controller implements Initializable {
 
         textAreaIntrucciones.setText(textAreaIntrucciones.getText()
                 + "Mover Disco #" + discos + " de la torre " + inicio + " a la torre " + fin + "\n");
-        if (inicio == 1) {
-            if (fin == 2) {
-                torreHanoi2.getChildren().add(torreHanoi1.getChildren().get(6-discos));
+        try {
+            Thread.sleep(5 * 1000);
+            if (inicio == 1) {
+                if (fin == 2) {
+                    System.out.println(discos);
+                    torreHanoi2.getChildren().add(torreHanoi1.getChildren().get(0));
+                } else if (fin == 3) {
+                    torreHanoi3.getChildren().add(torreHanoi1.getChildren().get(0));
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         hanoi(discos - 1, auxiliar, inicio, fin);
@@ -64,6 +75,7 @@ public class Controller implements Initializable {
 
     @FXML
     void nextMove(ActionEvent event) {
+        hanoi(size, 1, 2, 3);
     }
 
     private void hanoiColocation(int posDisco, ObservableList<Button> disco, VBox inicio, VBox auxiliar, VBox fin) {
@@ -81,9 +93,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        for (int i = 0; i < 6; i++)
-            torreHanoi1.getChildren().get(i).setVisible(false);
-
         List<String> choices = new ArrayList<>();
         choices.add("4");
         choices.add("5");
@@ -95,10 +104,10 @@ public class Controller implements Initializable {
         dialog.setContentText("Discos:");
         Optional<String> result = dialog.showAndWait();
 
-        hanoi(Integer.parseInt(result.get()), 1, 2, 3);
         for (int i = 0; i < Integer.parseInt(result.get()); i++) {
-            ((Button) torreHanoi1.getChildren().get(5 - i)).setText("Disco " + (Integer.parseInt(result.get()) - i));
-            torreHanoi1.getChildren().get(5 - i).setVisible(true);
+            torreHanoi1.getChildren().add(torreHanoi.getChildren().get(5 - i));
+            ((Button) torreHanoi1.getChildren().get(i)).setText("Disco " + (i + 1));
         }
+        size = Integer.parseInt(result.get());
     }
 }
