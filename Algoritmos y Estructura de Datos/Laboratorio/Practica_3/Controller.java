@@ -24,13 +24,10 @@ public class Controller implements Initializable {
     @FXML
     public VBox torreHanoi3;
     @FXML
-    private Button buttonNextMove;
-    @FXML
     private TextArea textAreaIntrucciones;
 
     private int size = 0;
     private Alert dialogAlert = new Alert(Alert.AlertType.CONFIRMATION);
-
 
     private void hanoi(int discos, int inicio, int auxiliar, int fin) {
         if (discos == 0)
@@ -63,6 +60,7 @@ public class Controller implements Initializable {
     @FXML
     void nextMove(ActionEvent event) {
         hanoi(size, 1, 2, 3);
+
     }
 
     @Override
@@ -79,7 +77,7 @@ public class Controller implements Initializable {
 
         ChoiceDialog<String> dialog = new ChoiceDialog<>("4", choices);
         dialog.setTitle("Torre de Hanoi");
-        dialog.setHeaderText("Elige la cantidad de discos que de    seas en la torre.");
+        dialog.setHeaderText("Elige la cantidad de discos que deseas en la torre.");
         dialog.setContentText("Discos:");
         Optional<String> result = dialog.showAndWait();
 
