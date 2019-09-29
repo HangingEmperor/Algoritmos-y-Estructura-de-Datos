@@ -16,6 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
         primaryStage.setTitle("Torres de Hanoi");
+        primaryStage.setX(100);
         primaryStage.setScene(new Scene(root, 600, 410));
         primaryStage.show();
     }

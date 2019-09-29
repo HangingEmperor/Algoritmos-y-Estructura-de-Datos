@@ -1,13 +1,11 @@
 package Laboratorio.Practica_3;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,47 +27,36 @@ public class Controller implements Initializable {
     private Button buttonNextMove;
     @FXML
     private TextArea textAreaIntrucciones;
-    private int size = 0;
 
-    /*
-        Mover Disco #1 de la torre 1 a la torre 2
-        Mover Disco #2 de la torre 1 a la torre 3
-        Mover Disco #1 de la torre 2 a la torre 3
-        Mover Disco #3 de la torre 1 a la torre 2
-        Mover Disco #1 de la torre 3 a la torre 1
-        Mover Disco #2 de la torre 3 a la torre 2
-        Mover Disco #1 de la torre 1 a la torre 2
-        Mover Disco #4 de la torre 1 a la torre 3
-        Mover Disco #1 de la torre 2 a la torre 3
-        Mover Disco #2 de la torre 2 a la torre 1
-        Mover Disco #1 de la torre 3 a la torre 1
-        Mover Disco #3 de la torre 2 a la torre 3
-        Mover Disco #1 de la torre 1 a la torre 2
-        Mover Disco #2 de la torre 1 a la torre 3
-        Mover Disco #1 de la torre 2 a la torre 3
-    */
+    private int size = 0;
+    private Alert dialogAlert = new Alert(Alert.AlertType.CONFIRMATION);
+
 
     private void hanoi(int discos, int inicio, int auxiliar, int fin) {
         if (discos == 0)
             return;
         hanoi(discos - 1, inicio, fin, auxiliar);
 
-        textAreaIntrucciones.setText(textAreaIntrucciones.getText()
-                + "Mover Disco #" + discos + " de la torre " + inicio + " a la torre " + fin + "\n");
-        try {
-            Thread.sleep(5 * 1000);
+        if (dialogAlert.showAndWait().filter(ButtonType.OK::equals).isPresent()) {
+            textAreaIntrucciones.setText(textAreaIntrucciones.getText()
+                    + "Mover Disco #" + discos + " de la torre " + inicio + " a la torre " + fin + "\n");
             if (inicio == 1) {
-                if (fin == 2) {
-                    System.out.println(discos);
-                    torreHanoi2.getChildren().add(torreHanoi1.getChildren().get(0));
-                } else if (fin == 3) {
-                    torreHanoi3.getChildren().add(torreHanoi1.getChildren().get(0));
-                }
+                if (fin == 2)
+                    torreHanoi2.getChildren().add(0, torreHanoi1.getChildren().get(0));
+                else if (fin == 3)
+                    torreHanoi3.getChildren().add(0, torreHanoi1.getChildren().get(0));
+            } else if (inicio == 2) {
+                if (fin == 1)
+                    torreHanoi1.getChildren().add(0, torreHanoi2.getChildren().get(0));
+                else if (fin == 3)
+                    torreHanoi3.getChildren().add(0, torreHanoi2.getChildren().get(0));
+            } else if (inicio == 3) {
+                if (fin == 1)
+                    torreHanoi1.getChildren().add(0, torreHanoi3.getChildren().get(0));
+                else if (fin == 2)
+                    torreHanoi2.getChildren().add(0, torreHanoi3.getChildren().get(0));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
         hanoi(discos - 1, auxiliar, inicio, fin);
     }
 
@@ -78,21 +65,13 @@ public class Controller implements Initializable {
         hanoi(size, 1, 2, 3);
     }
 
-    private void hanoiColocation(int posDisco, ObservableList<Button> disco, VBox inicio, VBox auxiliar, VBox fin) {
-        this.torreHanoi1 = inicio;
-        this.torreHanoi2 = auxiliar;
-        this.torreHanoi3 = fin;
-        if (posDisco == 0)
-            return;
-        hanoiColocation(posDisco - 1, disco, inicio, fin, auxiliar);
-
-        torreHanoi1.getChildren().add(disco.get(4 - posDisco));
-
-        hanoiColocation(posDisco - 1, disco, auxiliar, inicio, fin);
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        dialogAlert.setTitle("Aviso");
+        dialogAlert.setHeaderText(null);
+        dialogAlert.setContentText("Click para siguiente movimiento");
+        dialogAlert.initStyle(StageStyle.UTILITY);
+
         List<String> choices = new ArrayList<>();
         choices.add("4");
         choices.add("5");
