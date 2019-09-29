@@ -64,8 +64,8 @@
         </Pane>
         <TextArea fx:id="textAreaIntrucciones" editable="false" layoutX="600.0" layoutY="14.0" prefHeight="305.0"
                   prefWidth="259.0"/>
-        <Button fx:id="buttonNextMove" defaultButton="true" layoutX="217.0" layoutY="300.0" mnemonicParsing="false"
-                onAction="#nextMove" prefHeight="25.0" prefWidth="168.0" text="Iniciar"/>
+        <Button fx:id="buttonStart" defaultButton="true" layoutX="217.0" layoutY="300.0" mnemonicParsing="false"
+                onAction="#start" prefHeight="25.0" prefWidth="168.0" text="Iniciar"/>
         <Label layoutX="177.0" layoutY="14.0" prefHeight="50.0" prefWidth="247.0" text="Torre de Hanoi">
             <font>
                 <Font name="System Bold" size="34.0"/>

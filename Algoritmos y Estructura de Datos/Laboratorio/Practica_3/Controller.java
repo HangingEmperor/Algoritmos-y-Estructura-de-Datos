@@ -13,18 +13,23 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * @author Omar
+ */
 public class Controller implements Initializable {
 
     @FXML
     private VBox torreHanoi;
     @FXML
-    public VBox torreHanoi1;
+    private VBox torreHanoi1;
     @FXML
-    public VBox torreHanoi2;
+    private VBox torreHanoi2;
     @FXML
-    public VBox torreHanoi3;
+    private VBox torreHanoi3;
     @FXML
     private TextArea textAreaIntrucciones;
+    @FXML
+    private Button buttonStart;
 
     private int size = 0;
     private Alert dialogAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -58,11 +63,15 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void nextMove(ActionEvent event) {
+    private void start(ActionEvent event) {
         hanoi(size, 1, 2, 3);
-
+        buttonStart.setDisable(true);
     }
 
+    /**
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dialogAlert.setTitle("Aviso");
