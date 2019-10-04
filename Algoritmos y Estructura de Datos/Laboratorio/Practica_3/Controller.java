@@ -14,6 +14,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
+ * Clase que hace funcion como controlar, es la encargada de ejecutar lo que sucede detras del programa.
+ *
  * @author Omar
  */
 public class Controller implements Initializable {
@@ -34,6 +36,14 @@ public class Controller implements Initializable {
     private int size = 0;
     private Alert dialogAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
+    /**
+     * Funcion recursiva que representa de forma visual los movimientos de las piezas de una torre.
+     *
+     * @param discos   Parametro entero que define la cantidad de discos en el juego.
+     * @param inicio   Parametro que define en que torre se inicia o se colocan los discos.
+     * @param auxiliar Parametro que define como torre mediador para realizar los movimientos.
+     * @param fin      Parametro que define hacia donde se moveran las piezas.
+     */
     private void hanoi(int discos, int inicio, int auxiliar, int fin) {
         if (discos == 0)
             return;
@@ -62,6 +72,11 @@ public class Controller implements Initializable {
         hanoi(discos - 1, auxiliar, inicio, fin);
     }
 
+    /**
+     * Funcion que se encarga de inicializar la funcion recursiva hanoi y pasar sus parametros.
+     *
+     * @param event Listener en caso de realizar una accion.
+     */
     @FXML
     private void start(ActionEvent event) {
         hanoi(size, 1, 2, 3);
@@ -69,8 +84,10 @@ public class Controller implements Initializable {
     }
 
     /**
-     * @param url
-     * @param resourceBundle
+     * Se encarga de inicializar las torres, colocando nombres y sus posiciones.
+     *
+     * @param url            Parametro que define un enlace.
+     * @param resourceBundle Parametro que define el escenario.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

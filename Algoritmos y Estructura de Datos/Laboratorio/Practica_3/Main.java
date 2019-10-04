@@ -7,20 +7,22 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * El programa consiste en realizar una torre de hanoi animando sus movimientos de forma visual para el usuario.
+ *
  * @author Omar
  */
 public class Main extends Application {
 
     /**
-     * @param args
+     * @param args Argumentos para consola
      */
     public static void main(String[] args) {
         launch(args);
     }
 
     /**
-     * @param primaryStage
-     * @throws Exception
+     * @param primaryStage Escenario visual que se crea.
+     * @throws Exception En caso de no existir el archivo.
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
