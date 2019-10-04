@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="500.0" prefWidth="828.5" xmlns="http://javafx.com/javafx/8"
+            fx:controller="Laboratorio.Practica_4.Controller">
+    <children>
+        <SplitPane dividerPositions="0.3308, 0.6742" prefHeight="502.0" prefWidth="828.0">
+            <items>
+                <AnchorPane prefHeight="379.0" prefWidth="279.0">
+                    <children>
+                        <Label prefHeight="35.0" prefWidth="270.0" style="-fx-alignment: center;"
+                               text="Procesos Generados" textAlignment="CENTER"/>
+                        <TextArea fx:id="textAreaProcesosGenerados" layoutY="32.0" prefHeight="471.0"
+                                  prefWidth="270.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="379.0" prefWidth="279.0">
+                    <children>
+                        <Label prefHeight="35.0" prefWidth="270.0" style="-fx-alignment: center;"
+                               text="Procesos Terminados" textAlignment="CENTER"/>
+                        <TextArea fx:id="textAreaProcesosTerminados" layoutY="32.0" prefHeight="471.0"
+                                  prefWidth="270.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="379.0" prefWidth="279.0">
+                    <children>
+                        <Label prefHeight="35.0" prefWidth="270.0" style="-fx-alignment: center;"
+                               text="Procesos No Terminados" textAlignment="CENTER"/>
+                        <TextArea fx:id="textAreaProcesosNoTerminados" layoutY="32.0" prefHeight="471.0"
+                                  prefWidth="270.0"/>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
