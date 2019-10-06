@@ -16,8 +16,29 @@ public class Controller implements Initializable {
     @FXML
     private TextArea textAreaProcesosGenerados;
 
+    int time = 0;
+    private Queue<Integer> queu = new Queue<Integer>();
+    private int procesos = 0;
+
+    private void crearProceso() {
+        queu.encolar(procesos);
+        procesos++;
+    }
+
+    public int generarTarea() {
+        if (((int) (Math.random() * 10) + 1) % 2 == 0) {
+            crearProceso();
+            return (int) (Math.random() * 10) + 2;
+        }
+        return 0;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        do {
+            time++;
+            generarTarea();
 
+        } while (time == 600);
     }
 }
