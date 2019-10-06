@@ -35,22 +35,24 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int tarea;
+        int tarea = 0;
 
         do {
             time++;
 
-            tarea = generarTarea();
-            if (tarea != 0) {
-                if (tarea > 3) {
+            if (time % 3 == 0) {
+                tarea = generarTarea();
+                if (tarea != 0) {
+                    if (tarea > 3) {
 
-                } else if (tarea < 3) {
+                    } else if (tarea < 3) {
 
-                } else {
+                    } else {
 
+                    }
                 }
             }
-
+            tarea--;
         } while (time == 600);
     }
 }

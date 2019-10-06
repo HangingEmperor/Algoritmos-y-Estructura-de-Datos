@@ -9,6 +9,8 @@ public class Pruebas {
         queue.encolar("haces");
         queue.encolar("crack");
 
+        System.out.println(3 % 3);
+
         System.out.println(queue.desencolar().getInfo());
     }
 }
