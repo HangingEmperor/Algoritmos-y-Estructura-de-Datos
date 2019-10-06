@@ -17,11 +17,10 @@ public class Controller implements Initializable {
     private TextArea textAreaProcesosGenerados;
 
     int time = 0;
-    private Queue<Integer> queu = new Queue<Integer>();
+    private Queue<Process> queu = new Queue<Process>();
     private int procesos = 0;
 
     private void crearProceso() {
-        queu.encolar(procesos);
         procesos++;
     }
 
