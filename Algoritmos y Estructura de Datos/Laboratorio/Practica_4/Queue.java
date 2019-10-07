@@ -4,8 +4,9 @@ public class Queue<T> {
 
     private Node<T> start = null;
     private Node<T> end = null;
+    private int size = 0;
 
-    public void encolar(T data) {
+    public void insert(T data) {
         Node<T> node = new Node<T>();
         node.setInfo(data);
         node.setRef(null);
@@ -14,11 +15,11 @@ public class Queue<T> {
             start = node;
         else
             end.setRef(node);
-
+        size++;
         end = node;
     }
 
-    public Node<T> desencolar() {
+    public Node<T> remove() {
         Node<T> node = start;
 
         if (start != end) {
@@ -27,6 +28,19 @@ public class Queue<T> {
             start = null;
             end = null;
         }
+        size--;
         return node;
+    }
+
+    public Node<T> front() {
+        Node<T> datoAuxiliar = null;
+        if (start != null) {
+            datoAuxiliar = start;
+        }
+        return datoAuxiliar;
+    }
+
+    public int size() {
+        return size;
     }
 }
