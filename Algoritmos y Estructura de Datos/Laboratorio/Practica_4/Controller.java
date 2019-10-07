@@ -38,7 +38,6 @@ public class Controller implements Initializable {
         do {
             time++;
             if (time % 3 == 0) {
-                System.out.println("hello");
                 int proceso = generarTarea();
                 if (proceso != 0) {
                     Process process = new Process(procesos, proceso, time, 0);
