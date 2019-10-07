@@ -16,20 +16,15 @@ public class Controller implements Initializable {
     @FXML
     private TextArea textAreaProcesosGenerados;
 
-    int time = 0;
+    private int time = 0;
     private Queue<Process> queu = new Queue<Process>();
     private Queue<Process> queueEnd = new Queue<Process>();
     private int procesos = 0;
 
-    private void crearProceso() {
-        procesos++;
-    }
 
     private int generarTarea() {
-        if (((int) (Math.random() * 10) + 1) % 2 == 0) {
-            crearProceso();
-            return (int) (Math.random() * 10) + 2;
-        }
+        if (((int) (Math.random() * 10) + 1) % 2 == 0)
+            return (int) (Math.random() * 10) + 1;
         return 0;
     }
 
@@ -40,30 +35,39 @@ public class Controller implements Initializable {
             if (time % 3 == 0) {
                 int proceso = generarTarea();
                 if (proceso != 0) {
+                    procesos++;
                     Process process = new Process(procesos, proceso, time, 0);
                     queu.insert(process);
                     textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso " + process.getId()
-                            + " se genero en t: " + process.getTime() + "\n");
+                            + " se genero en t: " + process.getStart() + " seg\n" + "Tiempo ejecucion: "
+                            + process.getTime() + " seg\n\n");
+
+                    if (queu.front().getInfo().getTime() > 3) {
+                        queu.front().getInfo().setTime(queu.front().getInfo().getTime() - 3);
+                        queu.insert(queu.front().getInfo());
+                    } else if (queu.front().getInfo().getTime() < 3) {
+                        time = time + queu.front().getInfo().getTime();
+                        queu.front().getInfo().setEnd(time);
+                        queu.front().getInfo().setTime(0);
+                        textAreaProcesosTerminados.setText(textAreaProcesosTerminados.getText() + "Proceso: " +
+                                queu.front().getInfo().getId() + "\nTiempo inicio: " + queu.front().getInfo().getStart() +
+                                "\nTiempo restante: " + queu.front().getInfo().getTime() + "\nTiempo final: " +
+                                queu.front().getInfo().getEnd() + "\nTiempo requerido: " +
+                                (time - queu.front().getInfo().getStart()) + "\n\n");
+                        queueEnd.insert(queu.front().getInfo());
+                    } else {
+                        queu.front().getInfo().setTime(0);
+                        queu.front().getInfo().setEnd(time);
+                        textAreaProcesosTerminados.setText(textAreaProcesosTerminados.getText() + "Proceso: " +
+                                queu.front().getInfo().getId() + "\nTiempo inicio: " + queu.front().getInfo().getStart() +
+                                "\nTiempo restante: " + queu.front().getInfo().getTime() + "\nTiempo final: " +
+                                queu.front().getInfo().getEnd() + "\nTiempo requerido: " +
+                                (time - queu.front().getInfo().getStart()) + "\n\n");
+                        queueEnd.insert(queu.remove().getInfo());
+                    }
                 }
-
-                /*
-                if (queu.front().getInfo().getTime() > 3) {
-                    queu.front().getInfo().setTime(queu.front().getInfo().getTime() - 3);
-                    queu.insert(queu.front().getInfo());
-                } else if (queu.front().getInfo().getTime() < 3) {
-                    time = time + queu.front().getInfo().getTime();
-                    queu.front().getInfo().setTime(0);
-                    queu.front().getInfo().setEnd(time);
-
-                    queueEnd.insert(queu.front().getInfo());
-                } else {
-                    queu.front().getInfo().setTime(0);
-                    queu.front().getInfo().setEnd(time);
-
-                    queueEnd.insert(queu.remove().getInfo());
-                }*/
             }
-        } while (time < 20);
+        } while (time < 40);
 
     }
 }
