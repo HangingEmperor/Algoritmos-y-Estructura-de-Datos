@@ -21,7 +21,6 @@ public class Controller implements Initializable {
     private Queue<Process> queueEnd = new Queue<Process>();
     private int procesos = 0;
 
-
     private int generarTarea() {
         if (((int) (Math.random() * 10) + 1) % 2 == 0)
             return (int) (Math.random() * 10) + 1;
@@ -44,7 +43,7 @@ public class Controller implements Initializable {
 
                     if (queu.front().getInfo().getTime() > 3) {
                         queu.front().getInfo().setTime(queu.front().getInfo().getTime() - 3);
-                        queu.insert(queu.front().getInfo());
+                        queu.insert(queu.remove().getInfo());
                     } else if (queu.front().getInfo().getTime() < 3) {
                         time = time + queu.front().getInfo().getTime();
                         queu.front().getInfo().setEnd(time);
@@ -54,7 +53,7 @@ public class Controller implements Initializable {
                                 "\nTiempo restante: " + queu.front().getInfo().getTime() + "\nTiempo final: " +
                                 queu.front().getInfo().getEnd() + "\nTiempo requerido: " +
                                 (time - queu.front().getInfo().getStart()) + "\n\n");
-                        queueEnd.insert(queu.front().getInfo());
+                        queueEnd.insert(queu.remove().getInfo());
                     } else {
                         queu.front().getInfo().setTime(0);
                         queu.front().getInfo().setEnd(time);
@@ -68,6 +67,13 @@ public class Controller implements Initializable {
                 }
             }
         } while (time < 40);
-
+        int size = queu.size();
+        for (int i = 0; i < size; i++) {
+            textAreaProcesosNoTerminados.setText(textAreaProcesosNoTerminados.getText() + "Proceso: " +
+                    queu.front().getInfo().getId() + "\nTiempo inicio: " + queu.front().getInfo().getStart() +
+                    "\nTiempo restante: " + queu.front().getInfo().getTime() + "\nTiempo final: " + 0 +
+                    "\nTiempo requerido: " + 0 + "\n\n");
+            queu.remove();
+        }
     }
 }

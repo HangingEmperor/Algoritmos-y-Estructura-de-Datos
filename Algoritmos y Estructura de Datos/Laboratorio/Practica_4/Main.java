@@ -28,7 +28,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
         primaryStage.setTitle("Cola de procesos");
-        primaryStage.setX(0);
         primaryStage.setScene(new Scene(root, 828.5, 509));
         primaryStage.show();
     }
