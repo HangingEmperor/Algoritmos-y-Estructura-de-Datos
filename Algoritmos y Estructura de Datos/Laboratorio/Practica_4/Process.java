@@ -4,6 +4,7 @@ public class Process {
 
     private int id;
     private int time;
+    private int requerido;
     private int start;
     private int end;
 
@@ -12,9 +13,10 @@ public class Process {
         this.time = time;
     }
 
-    public Process(int id, int time, int start, int end) {
+    public Process(int id, int time, int requerido, int start, int end) {
         this.id = id;
         this.time = time;
+        this.requerido = requerido;
         this.start = start;
         this.end = end;
     }
@@ -35,6 +37,14 @@ public class Process {
         this.id = id;
     }
 
+    public int getRequerido() {
+        return requerido;
+    }
+
+    public void setRequerido(int requerido) {
+        this.requerido = requerido;
+    }
+
     public int getStart() {
         return start;
     }
@@ -53,11 +63,11 @@ public class Process {
 
     @Override
     public String toString() {
-        return "Process{" +
-                "id=" + id +
+        return "Process{" + "id=" + id +
                 ", time=" + time +
-                ", start=" + start +
-                ", end=" + end +
-                '}';
+                ", requerido=" + requerido +
+                ", start=" + start + 
+                ", end=" + end + '}';
     }
 }
+
