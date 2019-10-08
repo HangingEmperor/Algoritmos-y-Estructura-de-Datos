@@ -17,8 +17,8 @@ public class Controller implements Initializable {
     private TextArea textAreaProcesosGenerados;
 
     private int time = 0;
-    private Queue<Process> queu = new Queue<Process>();
-    private Queue<Process> queueEnd = new Queue<Process>();
+    private Queue<Process> queu = new Queue<>();
+    private Queue<Process> queueEnd = new Queue<>();
     private int procesos = 0;
 
     private int generarTarea() {
@@ -35,38 +35,40 @@ public class Controller implements Initializable {
                 int proceso = generarTarea();
                 if (proceso != 0) {
                     procesos++;
-                    Process process = new Process(procesos, proceso, time, 0);
+                    Process process = new Process(procesos, proceso, proceso, time, 0);
                     queu.insert(process);
                     textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso " + process.getId()
                             + " se genero en t: " + process.getStart() + " seg\n" + "Tiempo ejecucion: "
                             + process.getTime() + " seg\n\n");
+                    if(procesos > 1){
 
                     if (queu.front().getInfo().getTime() > 3) {
                         queu.front().getInfo().setTime(queu.front().getInfo().getTime() - 3);
+                        textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso "+
+                                queu.front().getInfo().getId() + " reinsertado en tiempo: " + time + "seg\n");
                         queu.insert(queu.remove().getInfo());
                     } else if (queu.front().getInfo().getTime() < 3) {
                         time = time + queu.front().getInfo().getTime();
                         queu.front().getInfo().setEnd(time);
-                        queu.front().getInfo().setTime(0);
                         textAreaProcesosTerminados.setText(textAreaProcesosTerminados.getText() + "Proceso: " +
                                 queu.front().getInfo().getId() + "\nTiempo inicio: " + queu.front().getInfo().getStart() +
-                                "\nTiempo restante: " + queu.front().getInfo().getTime() + "\nTiempo final: " +
-                                queu.front().getInfo().getEnd() + "\nTiempo requerido: " +
+                                "\nTiempo ejecucion: " + queu.front().getInfo().getRequerido() + "\nTiempo restante: " + 0 +
+                                "\nTiempo final: " + queu.front().getInfo().getEnd() + "\nTiempo requerido: " +
                                 (time - queu.front().getInfo().getStart()) + "\n\n");
                         queueEnd.insert(queu.remove().getInfo());
                     } else {
-                        queu.front().getInfo().setTime(0);
                         queu.front().getInfo().setEnd(time);
                         textAreaProcesosTerminados.setText(textAreaProcesosTerminados.getText() + "Proceso: " +
                                 queu.front().getInfo().getId() + "\nTiempo inicio: " + queu.front().getInfo().getStart() +
-                                "\nTiempo restante: " + queu.front().getInfo().getTime() + "\nTiempo final: " +
-                                queu.front().getInfo().getEnd() + "\nTiempo requerido: " +
-                                (time - queu.front().getInfo().getStart()) + "\n\n");
+                                "\nTiempo ejecucion: " + queu.front().getInfo().getRequerido() + "\nTiempo restante: " + 
+                                queu.front().getInfo().getTime() + "\nTiempo final: " + queu.front().getInfo().getEnd() +
+                                "\nTiempo requerido: " + (time - queu.front().getInfo().getStart()) + "\n\n");
                         queueEnd.insert(queu.remove().getInfo());
                     }
                 }
+                }
             }
-        } while (time < 40);
+        } while (time < 600);
         int size = queu.size();
         for (int i = 0; i < size; i++) {
             textAreaProcesosNoTerminados.setText(textAreaProcesosNoTerminados.getText() + "Proceso: " +
@@ -77,3 +79,4 @@ public class Controller implements Initializable {
         }
     }
 }
+
