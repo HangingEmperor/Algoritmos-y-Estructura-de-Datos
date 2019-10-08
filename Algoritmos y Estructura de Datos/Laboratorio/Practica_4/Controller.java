@@ -77,6 +77,8 @@ public class Controller implements Initializable {
                     "\nTiempo requerido: " + 0 + "\n\n");
             queu.remove();
         }
+        this.textAreaProcesosNoTerminados.setEditable(false);
+        this.textAreaProcesosTerminados.setEditable(false);
+        this.textAreaProcesosGenerados.setEditable(false);
     }
 }
-
