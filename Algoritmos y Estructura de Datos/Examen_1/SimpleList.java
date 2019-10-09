@@ -3,18 +3,21 @@ package Examen_1;
 public class SimpleList<T> {
 
     private Node<T> start = null;
+    private int size = 0;
 
     public void insertStart(T data) {
         Node<T> node = new Node<>();
         node.setInfo(data);
         node.setRef(start);
         start = node;
+        size++;
     }
 
     public Node<T> removeStart() {
         if (start == null) {
             return null;
         }
+        size--;
         start = start.getRef();
         return start;
     }
@@ -32,6 +35,7 @@ public class SimpleList<T> {
             aux.setRef(node);
             node.setRef(null);
         }
+        size++;
     }
 
     public Node<T> removeEnd() {
@@ -53,6 +57,7 @@ public class SimpleList<T> {
                 }
             }
         }
+        size--;
         return node;
     }
 
@@ -66,10 +71,12 @@ public class SimpleList<T> {
         }
         if (act != null && ant == null) {
             start = act.getRef();
+            size--;
             return act;
         }
         if (act != null && ant != null) {
             ant.setRef(act.getRef());
+            size--;
             return act;
         }
         return null;
