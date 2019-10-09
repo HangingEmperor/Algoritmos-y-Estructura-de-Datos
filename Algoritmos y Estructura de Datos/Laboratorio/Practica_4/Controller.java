@@ -33,15 +33,12 @@ public class Controller implements Initializable {
             time++;
             if (time % 3 == 0) {
                 int proceso = generarTarea();
-                if (proceso != 0) {
                     procesos++;
                     Process process = new Process(procesos, proceso, proceso, time, 0);
                     queu.insert(process);
                     textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso " + process.getId()
                             + " se genero en t: " + process.getStart() + " seg\n" + "Tiempo ejecucion: "
                             + process.getTime() + " seg\n\n");
-                    if(procesos > 1){
-
                     if (queu.front().getInfo().getTime() > 3) {
                         queu.front().getInfo().setTime(queu.front().getInfo().getTime() - 3);
                         textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso "+
@@ -65,8 +62,6 @@ public class Controller implements Initializable {
                                 "\nTiempo requerido: " + (time - queu.front().getInfo().getStart()) + "\n\n");
                         queueEnd.insert(queu.remove().getInfo());
                     }
-                }
-                }
             }
         } while (time < 600);
         int size = queu.size();
