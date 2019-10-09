@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="500.0" prefWidth="828.5" xmlns="http://javafx.com/javafx/8"
-            fx:controller="Laboratorio.Practica_4.Controller">
-    <children>
-        <SplitPane dividerPositions="0.3308, 0.6742" prefHeight="502.0" prefWidth="828.0">
-            <items>
-                <AnchorPane prefHeight="379.0" prefWidth="279.0">
-                    <children>
-                        <Label prefHeight="35.0" prefWidth="270.0" style="-fx-alignment: center;"
-                               text="Procesos Generados" textAlignment="CENTER"/>
-                        <TextArea fx:id="textAreaProcesosGenerados" layoutY="32.0" prefHeight="471.0"
-                                  prefWidth="270.0"/>
-                    </children>
-                </AnchorPane>
-                <AnchorPane prefHeight="379.0" prefWidth="279.0">
-                    <children>
-                        <Label prefHeight="35.0" prefWidth="270.0" style="-fx-alignment: center;"
-                               text="Procesos Terminados" textAlignment="CENTER"/>
-                        <TextArea fx:id="textAreaProcesosTerminados" layoutY="32.0" prefHeight="471.0"
-                                  prefWidth="270.0"/>
-                    </children>
-                </AnchorPane>
-                <AnchorPane prefHeight="379.0" prefWidth="279.0">
-                    <children>
-                        <Label prefHeight="35.0" prefWidth="270.0" style="-fx-alignment: center;"
-                               text="Procesos No Terminados" textAlignment="CENTER"/>
-                        <TextArea fx:id="textAreaProcesosNoTerminados" layoutY="32.0" prefHeight="471.0"
-                                  prefWidth="270.0"/>
-                    </children>
-                </AnchorPane>
-            </items>
-        </SplitPane>
-    </children>
-</AnchorPane>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="505.0" prefWidth="829.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practica_4.Controller">
+   <center>
+      <SplitPane dividerPositions="0.3308, 0.6742" prefHeight="502.0" prefWidth="828.0" BorderPane.alignment="CENTER">
+         <items>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label prefHeight="35.0" prefWidth="270.0" style="-fx-alignment: center;" text="Procesos Generados" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+               </top>
+               <center>
+                  <TextArea fx:id="textAreaProcesosGenerados" prefHeight="471.0" prefWidth="270.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label prefHeight="35.0" prefWidth="270.0" style="-fx-alignment: center;" text="Procesos Terminados" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+               </top>
+               <center>
+                  <TextArea fx:id="textAreaProcesosTerminados" prefHeight="471.0" prefWidth="270.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label prefHeight="35.0" prefWidth="270.0" style="-fx-alignment: center;" text="Procesos No Terminados" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+               </top>
+               <center>
+                  <TextArea fx:id="textAreaProcesosNoTerminados" prefHeight="471.0" prefWidth="270.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>
