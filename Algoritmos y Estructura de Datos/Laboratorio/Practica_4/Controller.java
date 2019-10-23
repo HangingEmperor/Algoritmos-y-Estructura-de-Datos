@@ -18,12 +18,14 @@ public class Controller implements Initializable {
 
     private int time = 0;
     private Queue<Process> queu = new Queue<>();
+    private Queue<Process> aux = new Queue<>();
     private Queue<Process> queueEnd = new Queue<>();
     private int procesos = 0;
+    private int size = 0;
 
     private int generarTarea() {
         if (((int) (Math.random() * 10) + 1) % 2 == 0)
-            return (int) (Math.random() * 10) + 1;
+            return (int) (Math.random() * 10) + 2;
         return 0;
     }
 
@@ -33,15 +35,25 @@ public class Controller implements Initializable {
             time++;
             if (time % 3 == 0) {
                 int proceso = generarTarea();
-                    procesos++;
-                    Process process = new Process(procesos, proceso, proceso, time, 0);
-                    queu.insert(process);
-                    textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso " + process.getId()
-                            + " se genero en t: " + process.getStart() + " seg\n" + "Tiempo ejecucion: "
-                            + process.getTime() + " seg\n\n");
+                if (proceso < 2) {
+                    proceso = 2;
+                } else if (proceso > 10) {
+                    proceso = 10;
+                }
+                procesos++;
+                size++;
+
+                Process process = new Process(procesos, proceso, proceso, time, 0);
+                textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso " + process.getId()
+                        + " se genero en t: " + process.getStart() + " seg\n" + "Tiempo ejecucion: "
+                        + process.getTime() + " seg\n\n");
+
+                queu.insert(process);
+
+                for (int i = 0; i < size; i++) {
                     if (queu.front().getInfo().getTime() > 3) {
                         queu.front().getInfo().setTime(queu.front().getInfo().getTime() - 3);
-                        textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso "+
+                        textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso " +
                                 queu.front().getInfo().getId() + " reinsertado en tiempo: " + time + "seg\n");
                         queu.insert(queu.remove().getInfo());
                     } else if (queu.front().getInfo().getTime() < 3) {
@@ -52,18 +64,24 @@ public class Controller implements Initializable {
                                 "\nTiempo ejecucion: " + queu.front().getInfo().getRequerido() + "\nTiempo restante: " + 0 +
                                 "\nTiempo final: " + queu.front().getInfo().getEnd() + "\nTiempo requerido: " +
                                 (time - queu.front().getInfo().getStart()) + "\n\n");
+                        textAreaProcesosGenerados.setText(textAreaProcesosGenerados.getText() + "Proceso: " +
+                                queu.front().getInfo().getId() + " se inserto en " + "Procesos Terminados\n");
                         queueEnd.insert(queu.remove().getInfo());
+                        size--;
                     } else {
                         queu.front().getInfo().setEnd(time);
                         textAreaProcesosTerminados.setText(textAreaProcesosTerminados.getText() + "Proceso: " +
                                 queu.front().getInfo().getId() + "\nTiempo inicio: " + queu.front().getInfo().getStart() +
-                                "\nTiempo ejecucion: " + queu.front().getInfo().getRequerido() + "\nTiempo restante: " + 
+                                "\nTiempo ejecucion: " + queu.front().getInfo().getRequerido() + "\nTiempo restante: " +
                                 queu.front().getInfo().getTime() + "\nTiempo final: " + queu.front().getInfo().getEnd() +
                                 "\nTiempo requerido: " + (time - queu.front().getInfo().getStart()) + "\n\n");
                         queueEnd.insert(queu.remove().getInfo());
+                        size--;
                     }
+                }
             }
-        } while (time < 600);
+        } while (time < 100);
+
         int size = queu.size();
         for (int i = 0; i < size; i++) {
             textAreaProcesosNoTerminados.setText(textAreaProcesosNoTerminados.getText() + "Proceso: " +

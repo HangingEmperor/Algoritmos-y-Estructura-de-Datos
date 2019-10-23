@@ -90,7 +90,7 @@ public class DoubleList<T> {
         if (position <= size) {
             int informacion;
             if (position == 1) {
-                informacion = (int) start.getInfo();
+                //informacion = (int) start.getInfo();
                 start = start.getSig();
                 if (start != null)
                     start.setAnt(null);
@@ -104,7 +104,7 @@ public class DoubleList<T> {
                 Node<T> siguiente = prox.getSig();
                 if (siguiente != null)
                     siguiente.setAnt(reco);
-                informacion = (int) prox.getInfo();
+                //informacion = (int) prox.getInfo();
             }
             return start;
         } else

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.BorderPane?>
-
-<BorderPane prefHeight="505.0" prefWidth="829.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practica_4.Controller">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="505.0" prefWidth="829.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="Laboratorio.Practica_4.Controller">
    <center>
       <SplitPane dividerPositions="0.3308, 0.6742" prefHeight="502.0" prefWidth="828.0" BorderPane.alignment="CENTER">
          <items>
