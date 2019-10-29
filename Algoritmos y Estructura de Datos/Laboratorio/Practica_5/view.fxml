@@ -25,7 +25,7 @@
             </rowConstraints>
         </GridPane>
         <HBox fx:id="list" layoutX="20.0" layoutY="14.0" prefHeight="90.0" prefWidth="571.0"/>
-        <Slider fx:id="position" blockIncrement="4.0" layoutX="13.0" layoutY="129.0" majorTickUnit="1.0" max="10.0"
+        <Slider fx:id="position" blockIncrement="1.0" layoutX="13.0" layoutY="129.0" majorTickUnit="1.0" max="0.0"
                 minorTickCount="0" prefHeight="31.0" prefWidth="585.0" showTickLabels="true" showTickMarks="true"
                 snapToTicks="true"/>
         <ColorPicker fx:id="colorPicker" editable="true" layoutX="14.0" layoutY="188.0" prefHeight="25.0"

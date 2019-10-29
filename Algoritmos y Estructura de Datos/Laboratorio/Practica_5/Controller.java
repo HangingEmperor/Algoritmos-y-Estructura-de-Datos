@@ -2,7 +2,6 @@ package Laboratorio.Practica_5;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
@@ -10,10 +9,9 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.LinkedList;
 
-public class Controller implements Initializable {
+public class Controller {
 
     @FXML
     private HBox list;
@@ -23,12 +21,16 @@ public class Controller implements Initializable {
     private Slider position;
     @FXML
     private ColorPicker colorPicker;
+    private LinkedList<Button> linkedList = new LinkedList<Button>();
+    private double items = 0;
 
     @FXML
     void insert(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
+            position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
                     new BackgroundFill(colorPicker.getValue(), null, null)));
+            linkedList.add((int) position.getValue(), ((Button) listCopy.getChildren().get(0)));
             list.getChildren().add((int) position.getValue(), listCopy.getChildren().get(0));
         }
     }
@@ -36,8 +38,10 @@ public class Controller implements Initializable {
     @FXML
     void insertStart(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
+            position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
                     new BackgroundFill(colorPicker.getValue(), null, null)));
+            linkedList.addFirst(((Button) listCopy.getChildren().get(0)));
             list.getChildren().add(0, listCopy.getChildren().get(0));
         }
     }
@@ -45,8 +49,10 @@ public class Controller implements Initializable {
     @FXML
     void insertEnd(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
+            position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
                     new BackgroundFill(colorPicker.getValue(), null, null)));
+            linkedList.addLast(((Button) listCopy.getChildren().get(0)));
             list.getChildren().add(listCopy.getChildren().get(0));
         }
     }
@@ -54,26 +60,27 @@ public class Controller implements Initializable {
     @FXML
     void remove(ActionEvent event) {
         if (!list.getChildren().isEmpty()) {
+            position.setMax(items--);
             listCopy.getChildren().add(list.getChildren().get((int) position.getValue()));
+            linkedList.remove((int) position.getValue());
         }
     }
 
     @FXML
     void removeFirst(ActionEvent event) {
         if (!list.getChildren().isEmpty()) {
+            position.setMax(items--);
             listCopy.getChildren().add(list.getChildren().get(0));
+            linkedList.removeFirst();
         }
     }
 
     @FXML
     void removeEnd(ActionEvent event) {
         if (!list.getChildren().isEmpty()) {
+            position.setMax(items--);
             listCopy.getChildren().add(list.getChildren().get(list.getChildren().size() - 1));
+            linkedList.removeLast();
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }
