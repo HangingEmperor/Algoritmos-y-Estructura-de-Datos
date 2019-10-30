@@ -1,4 +1,4 @@
-/*package Laboratorio.Practica_5;
+package Laboratorio.Practica_5;
 
 public class LinkedList<T> {
 
@@ -8,73 +8,104 @@ public class LinkedList<T> {
         first = null;
     }
 
-    public void insert(T o) {
-        Node tmp = new Node(o, null);
-
-        tmp.setSig(first);
-        first = tmp;
+    public void addFirst(T data) {
+        Node n = new Node();
+        n.setInfo(data);
+        n.setSig(first);
+        first = n;
     }
 
-    public T remove() {
-        Node out = null;
-
-        if (!isEmpty()) {
-            out = (Node) first.getInfo();
+    public Node removeStart() {
+        Node n;
+        if (first == null) {
+            return null;
+        } else {
+            n = first;
             first = first.getSig();
         }
-
-        return (T) out;
+        return n;
     }
 
-    public Object extract(int n) {
-        if (n <= 0 ||
-                isEmpty() ||
-                first.getSig() == null) { // only one element
-        return extract();
-        }
+    public void addFinal(T data) {
+        Node n = new Node();
+        n.setInfo(data);
 
-        Node prev;
-        {
-            prev = first;
-            Node current = first.getSig();
-            int i = 1;
-
-            while (current.getSig() != null && i != n) {
-                prev = current;
-                current = current.getSig();
-                i++;
-            }
-        }
-
-        Object info = prev.getSig().getInfo();
-        prev.setSig(prev.getSig().getSig());
-        return info;
-    }
-
-    public boolean isEmpty() {
-        if (first == null)
-            return true;
-        else
-            return false;
-    }
-
-    public void insert(T o, int n) {
-        if (isEmpty() || n <= 0) {
-            insert(o);
+        if (first == null) {
+            n.setSig(first);
+            first = n;
         } else {
-            Node iterator = first;
-
-            for (int i = 1; i < n; i++) {
-                if (iterator.getSig() == null)
-                    break;
-                iterator = iterator.getSig();
+            Node r;
+            r = first;
+            while (r.getSig() != null) {
+                r = r.getSig();
             }
-
-            Node tmp = new Node(o, iterator.getSig());
-            iterator.setSig(tmp);
+            r.setSig(n);
+            n.setSig(null);
         }
     }
 
+    public Node removeFinal() {
+        Node n;
+        Node r = new Node();
+        if (first == null) {
+            return null;
+        } else {
+            if (first.getSig() == null) {
+                n = first;
+                first = null;
+                return n;
+            } else {
+                r = first;
+            }
+            Node a = new Node();
+            a = r;
+            while (r.getSig() != null) {
+                a = r;
+                r = r.getSig();
+            }
+            a.setSig(null);
+            n = a;
+        }
+        return n;
+    }
 
+    public Node search(T data) {
+        Node aux = first;
+        while (aux != null && !aux.getInfo().equals(data)) {
+            aux = aux.getSig();
+        }
+        return aux;
+    }
+
+    public Node remove(T data) {
+        Node act = first;
+        Node ant = null;
+
+        while (act != null && !act.getInfo().equals(data)) {
+            ant = act;
+            act = act.getSig();
+        }
+
+        if (act != null && ant == null) {
+            Node ret = act;
+            first = act.getSig();
+            return ret;
+        }
+
+        if (act != null && ant != null) {
+            ant.setSig(act.getSig());
+        }
+        return null;
+    }
+
+    public String toString() {
+        String x = "";
+
+        Node aux = first;
+        while (aux != null) {
+            x += "" + aux.getInfo() + (aux.getSig() != null ? ", " : "");
+            aux = aux.getSig();
+        }
+        return x;
+    }
 }
-*/

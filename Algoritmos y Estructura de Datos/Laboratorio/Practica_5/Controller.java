@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
@@ -13,6 +14,8 @@ import java.util.LinkedList;
 
 public class Controller {
 
+    @FXML
+    private TextArea textAreaActions;
     @FXML
     private HBox list;
     @FXML
@@ -24,6 +27,11 @@ public class Controller {
     private LinkedList<Button> linkedList = new LinkedList<Button>();
     private double items = 0;
 
+    void printAction(int index) {
+        textAreaActions.setText(textAreaActions.getText() + linkedList.get(index).getBackground() +
+                " tiene como siguiente" + linkedList.get(index + 1).getBackground());
+    }
+
     @FXML
     void insert(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
@@ -32,6 +40,7 @@ public class Controller {
                     new BackgroundFill(colorPicker.getValue(), null, null)));
             linkedList.add((int) position.getValue(), ((Button) listCopy.getChildren().get(0)));
             list.getChildren().add((int) position.getValue(), listCopy.getChildren().get(0));
+            printAction((int) position.getValue());
         }
     }
 
@@ -43,6 +52,7 @@ public class Controller {
                     new BackgroundFill(colorPicker.getValue(), null, null)));
             linkedList.addFirst(((Button) listCopy.getChildren().get(0)));
             list.getChildren().add(0, listCopy.getChildren().get(0));
+            printAction(0);
         }
     }
 
@@ -54,6 +64,7 @@ public class Controller {
                     new BackgroundFill(colorPicker.getValue(), null, null)));
             linkedList.addLast(((Button) listCopy.getChildren().get(0)));
             list.getChildren().add(listCopy.getChildren().get(0));
+            printAction((int) items);
         }
     }
 
