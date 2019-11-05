@@ -24,12 +24,15 @@ public class Controller {
     private Slider position;
     @FXML
     private ColorPicker colorPicker;
+    @FXML
+    private ColorPicker colorPickerSearch;
     private LinkedList<Button> linkedList = new LinkedList<Button>();
     private double items = 0;
 
     void printAction(int index) {
-        textAreaActions.setText(textAreaActions.getText() + linkedList.get(index).getBackground() +
-                " tiene como siguiente" + linkedList.get(index + 1).getBackground());
+        textAreaActions.setText(textAreaActions.getText() +
+                linkedList.get(index).getBackground().getFills().get(0).getFill() + " tiene como siguiente " +
+                linkedList.get(index + 1).getBackground().getFills().get(0).getFill() + "\n");
     }
 
     @FXML
@@ -38,9 +41,21 @@ public class Controller {
             position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
                     new BackgroundFill(colorPicker.getValue(), null, null)));
-            linkedList.add((int) position.getValue(), ((Button) listCopy.getChildren().get(0)));
-            list.getChildren().add((int) position.getValue(), listCopy.getChildren().get(0));
-            printAction((int) position.getValue());
+
+            for (int i = 0; i < linkedList.size(); i++) {
+                if (linkedList.get(i).getBackground().getFills().get(0).getFill().equals(colorPickerSearch.getValue())) {
+                    linkedList.add(i, ((Button) listCopy.getChildren().get(0)));
+                    list.getChildren().add(i, listCopy.getChildren().get(0));
+                    textAreaActions.setText(textAreaActions.getText() + " Se inserto el color: " +
+                            linkedList.get(0).getBackground().getFills().get(0).getFill() + "\n");
+                    if (linkedList.size() > 1)
+                        printAction(i);
+                    break;
+                } else if (i == linkedList.size() - 1) {
+                    textAreaActions.setText(textAreaActions.getText() + " No se encontro el color: " +
+                            colorPickerSearch.getValue());
+                }
+            }
         }
     }
 
@@ -52,7 +67,10 @@ public class Controller {
                     new BackgroundFill(colorPicker.getValue(), null, null)));
             linkedList.addFirst(((Button) listCopy.getChildren().get(0)));
             list.getChildren().add(0, listCopy.getChildren().get(0));
-            printAction(0);
+            textAreaActions.setText(textAreaActions.getText() + " Se inserto al inicio el color: " +
+                    linkedList.get(0).getBackground().getFills().get(0).getFill() + "\n");
+            if (linkedList.size() > 1)
+                printAction(0);
         }
     }
 
@@ -64,7 +82,8 @@ public class Controller {
                     new BackgroundFill(colorPicker.getValue(), null, null)));
             linkedList.addLast(((Button) listCopy.getChildren().get(0)));
             list.getChildren().add(listCopy.getChildren().get(0));
-            printAction((int) items);
+            textAreaActions.setText(textAreaActions.getText() + " Se inserto al final el color: " +
+                    linkedList.get(0).getBackground().getFills().get(0).getFill() + " tiene como siguiente null. \n");
         }
     }
 
@@ -72,8 +91,17 @@ public class Controller {
     void remove(ActionEvent event) {
         if (!list.getChildren().isEmpty()) {
             position.setMax(items--);
-            listCopy.getChildren().add(list.getChildren().get((int) position.getValue()));
-            linkedList.remove((int) position.getValue());
+            for (int i = 0; i < linkedList.size(); i++) {
+                if (linkedList.get(i).getBackground().getFills().get(0).getFill().equals(colorPickerSearch.getValue())) {
+                    listCopy.getChildren().add(list.getChildren().get(i));
+                    textAreaActions.setText(textAreaActions.getText() + "Se removio: " +
+                            linkedList.remove(i) + "\n");
+                    break;
+                } else if (i == linkedList.size() - 1) {
+                    textAreaActions.setText(textAreaActions.getText() + "No se encontro el color:" +
+                            colorPickerSearch.getValue() + "\n");
+                }
+            }
         }
     }
 
@@ -82,7 +110,8 @@ public class Controller {
         if (!list.getChildren().isEmpty()) {
             position.setMax(items--);
             listCopy.getChildren().add(list.getChildren().get(0));
-            linkedList.removeFirst();
+            textAreaActions.setText(textAreaActions.getText() + "Se removio: " +
+                    linkedList.removeFirst() + "\n");
         }
     }
 
@@ -91,7 +120,8 @@ public class Controller {
         if (!list.getChildren().isEmpty()) {
             position.setMax(items--);
             listCopy.getChildren().add(list.getChildren().get(list.getChildren().size() - 1));
-            linkedList.removeLast();
+            textAreaActions.setText(textAreaActions.getText() + "Se removio: " +
+                    linkedList.removeLast() + "\n");
         }
     }
 }
