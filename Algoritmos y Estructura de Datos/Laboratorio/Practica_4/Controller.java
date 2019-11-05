@@ -7,6 +7,11 @@ import javafx.scene.control.TextArea;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Clase encargada de controlar el programa mediante el interfaz.
+ *
+ * @author Omar
+ */
 public class Controller implements Initializable {
 
     @FXML
@@ -30,6 +35,11 @@ public class Controller implements Initializable {
         return 0;
     }
 
+    /**
+     * Funcion encargada de crear todos los procesos.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         do {
@@ -48,7 +58,7 @@ public class Controller implements Initializable {
 
                 queu.insert(process);
             }
-   
+
             if (time % 3 == 0 && size > 0) {
                 System.out.println("time: " + time + " size: " + size);
                 for (int i = 0; i <= size; i++) {

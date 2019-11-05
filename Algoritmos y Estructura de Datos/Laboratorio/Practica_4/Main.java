@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * El programa consiste en realizar una torre de hanoi animando sus movimientos de forma visual para el usuario.
+ * El programa consiste en trabajar con procesos en paralelo y mostrarlo de forma grafica los procesos creados.
  *
  * @author Omar Flores Salazar
  */
