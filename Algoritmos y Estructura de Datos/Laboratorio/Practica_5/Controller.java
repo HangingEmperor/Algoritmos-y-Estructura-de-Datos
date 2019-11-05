@@ -95,7 +95,7 @@ public class Controller {
                 if (linkedList.get(i).getBackground().getFills().get(0).getFill().equals(colorPickerSearch.getValue())) {
                     listCopy.getChildren().add(list.getChildren().get(i));
                     textAreaActions.setText(textAreaActions.getText() + "Se removio: " +
-                            linkedList.remove(i) + "\n");
+                            linkedList.remove(i).getBackground().getFills().get(0).getFill() + "\n");
                     break;
                 } else if (i == linkedList.size() - 1) {
                     textAreaActions.setText(textAreaActions.getText() + "No se encontro el color:" +
