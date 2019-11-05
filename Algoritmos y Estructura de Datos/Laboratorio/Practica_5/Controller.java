@@ -29,14 +29,20 @@ public class Controller {
     private LinkedList<Button> linkedList = new LinkedList<Button>();
     private double items = 0;
 
-    void printAction(int index) {
+    /**
+     * @param index
+     */
+    public void printAction(int index) {
         textAreaActions.setText(textAreaActions.getText() +
                 linkedList.get(index).getBackground().getFills().get(0).getFill() + " tiene como siguiente " +
                 linkedList.get(index + 1).getBackground().getFills().get(0).getFill() + "\n");
     }
 
+    /**
+     * @param event
+     */
     @FXML
-    void insert(ActionEvent event) {
+    public void insert(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
             position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
@@ -59,8 +65,11 @@ public class Controller {
         }
     }
 
+    /**
+     * @param event
+     */
     @FXML
-    void insertStart(ActionEvent event) {
+    public void insertStart(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
             position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
@@ -74,8 +83,11 @@ public class Controller {
         }
     }
 
+    /**
+     * @param event
+     */
     @FXML
-    void insertEnd(ActionEvent event) {
+    public void insertEnd(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
             position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
@@ -87,8 +99,11 @@ public class Controller {
         }
     }
 
+    /**
+     * @param event
+     */
     @FXML
-    void remove(ActionEvent event) {
+    public void remove(ActionEvent event) {
         if (!list.getChildren().isEmpty()) {
             position.setMax(items--);
             for (int i = 0; i < linkedList.size(); i++) {
@@ -105,8 +120,11 @@ public class Controller {
         }
     }
 
+    /**
+     * @param event
+     */
     @FXML
-    void removeFirst(ActionEvent event) {
+    public void removeFirst(ActionEvent event) {
         if (!list.getChildren().isEmpty()) {
             position.setMax(items--);
             listCopy.getChildren().add(list.getChildren().get(0));
@@ -115,8 +133,11 @@ public class Controller {
         }
     }
 
+    /**
+     * @param event
+     */
     @FXML
-    void removeEnd(ActionEvent event) {
+    public void removeEnd(ActionEvent event) {
         if (!list.getChildren().isEmpty()) {
             position.setMax(items--);
             listCopy.getChildren().add(list.getChildren().get(list.getChildren().size() - 1));

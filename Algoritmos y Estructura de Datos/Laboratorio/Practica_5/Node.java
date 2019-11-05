@@ -5,6 +5,9 @@ public class Node<T> {
     private T info;
     private Node sig;
 
+    /**
+     *
+     */
     public Node() {
         this.info = null;
         this.sig = null;
@@ -19,6 +22,9 @@ public class Node<T> {
         return info;
     }
 
+    /**
+     * @param info
+     */
     public void setInfo(T info) {
         this.info = info;
     }

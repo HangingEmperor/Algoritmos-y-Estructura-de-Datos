@@ -4,10 +4,16 @@ public class LinkedList<T> {
 
     private Node first;
 
+    /**
+     *
+     */
     public LinkedList() {
         first = null;
     }
 
+    /**
+     * @param data
+     */
     public void addFirst(T data) {
         Node n = new Node();
         n.setInfo(data);
@@ -15,6 +21,9 @@ public class LinkedList<T> {
         first = n;
     }
 
+    /**
+     * @return
+     */
     public Node removeStart() {
         Node n;
         if (first == null) {
@@ -26,6 +35,9 @@ public class LinkedList<T> {
         return n;
     }
 
+    /**
+     * @param data
+     */
     public void addFinal(T data) {
         Node n = new Node();
         n.setInfo(data);
@@ -44,6 +56,9 @@ public class LinkedList<T> {
         }
     }
 
+    /**
+     * @return
+     */
     public Node removeFinal() {
         Node n;
         Node r = new Node();
@@ -69,6 +84,10 @@ public class LinkedList<T> {
         return n;
     }
 
+    /**
+     * @param data
+     * @return
+     */
     public Node search(T data) {
         Node aux = first;
         while (aux != null && !aux.getInfo().equals(data)) {
@@ -77,6 +96,10 @@ public class LinkedList<T> {
         return aux;
     }
 
+    /**
+     * @param data
+     * @return
+     */
     public Node remove(T data) {
         Node act = first;
         Node ant = null;

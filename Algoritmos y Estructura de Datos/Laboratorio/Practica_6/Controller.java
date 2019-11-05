@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 
 public class Controller {
 
-    DoubleLinked<Button> doubleLinked = new DoubleLinked<>();
+    private DoubleLinked<Button> doubleLinked = new DoubleLinked<>();
     @FXML
     private TextArea textAreaActions;
     @FXML
@@ -25,12 +25,8 @@ public class Controller {
     private HBox list;
     @FXML
     private HBox listCopy;
-
-    void printAction(int index) {
-        textAreaActions.setText(textAreaActions.getText() +
-                doubleLinked.get(index).getBackground().getFills().get(0).getFill() + " tiene como siguiente " +
-                doubleLinked.get(index + 1).getBackground().getFills().get(0).getFill() + "\n");
-    }
+    @FXML
+    private HBox listSort;
 
     @FXML
     void insert(ActionEvent event) {
@@ -62,8 +58,6 @@ public class Controller {
                     new BackgroundFill(colorPicker.getValue(), null, null)));
             doubleLinked.addFirst(((Button) listCopy.getChildren().get(0)));
             list.getChildren().add(0, listCopy.getChildren().get(0));
-            textAreaActions.setText(textAreaActions.getText() + " Se inserto al inicio el color: " +
-                    doubleLinked.get(0).getBackground().getFills().get(0).getFill() + "\n");
             if (doubleLinked.size() > 1)
                 printAction(0);
         }
@@ -77,7 +71,9 @@ public class Controller {
             doubleLinked.addLast(((Button) listCopy.getChildren().get(0)));
             list.getChildren().add(listCopy.getChildren().get(0));
             textAreaActions.setText(textAreaActions.getText() + " Se inserto al final el color: " +
-                    doubleLinked.get(0).getBackground().getFills().get(0).getFill() + " tiene como siguiente null. \n");
+                    doubleLinked.getLast().getBackground().getFills().get(0).getFill() + " tiene como siguiente null. " +
+                    " Y anterior: " + doubleLinked.get(doubleLinked.size() - 1).getBackground().getFills().get(0).getFill()
+                    + "\n");
         }
     }
 
@@ -121,21 +117,42 @@ public class Controller {
 
     @FXML
     void sortStartToEnd(ActionEvent event) {
-
+        for (int i = 0; i < doubleLinked.size(); i++) {
+            ((Button) list.getChildren().get(i)).setBackground(doubleLinked.get(i).getBackground());
+        }
     }
 
     @FXML
     void sortEndToStart(ActionEvent event) {
-
+        for (int i = 0; i < doubleLinked.size(); i++) {
+            ((Button) list.getChildren().get(i)).setBackground(doubleLinked.get(doubleLinked.size() - i).getBackground());
+        }
     }
 
     @FXML
     void sortColorToFinal(ActionEvent event) {
+        for (int i = 0; i < doubleLinked.size(); i++) {
+            if (doubleLinked.get(i).getBackground().getFills().get(0).getFill().equals(colorPickerSearch.getValue())) {
 
+            }
+        }
     }
 
     @FXML
     void sortColorToStart(ActionEvent event) {
 
+    }
+
+    void printAction(int index) {
+        if (index == 0) {
+            textAreaActions.setText(textAreaActions.getText() +
+                    doubleLinked.get(index).getBackground().getFills().get(0).getFill() + " tiene como siguiente " +
+                    doubleLinked.get(index + 1).getBackground().getFills().get(0).getFill() + " y anterior: null. \n");
+        } else {
+            textAreaActions.setText(textAreaActions.getText() +
+                    doubleLinked.get(index).getBackground().getFills().get(0).getFill() + " tiene como siguiente " +
+                    doubleLinked.get(index + 1).getBackground().getFills().get(0).getFill() + " y anterior: " +
+                    doubleLinked.get(index - 1).getBackground().getFills().get(0).getFill() + "\n");
+        }
     }
 }
