@@ -1,13 +1,15 @@
+package Clase.Busqueda;
+
 public class BusquedaBinaria {
     // Busca el elemento x en el vector v de n componentes
     int binaria(int v[], int n, int x) {
         int izq = 0;
         int der = n;
         boolean b = false;
-        int cen;
+        int cen = 0;
 
         while (izq <= der && b) {
-            cen = (int) (izq + der0) / 2;
+            cen = (int) (izq + der) / 2;
             if (x == v[cen]) {
                 b = true;
             } else { // Se redefine el intervalo de busqueda
