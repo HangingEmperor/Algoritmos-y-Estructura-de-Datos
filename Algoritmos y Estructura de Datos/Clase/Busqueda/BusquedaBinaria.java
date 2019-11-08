@@ -5,13 +5,13 @@ public class BusquedaBinaria {
     int binaria(int v[], int n, int x) {
         int izq = 0;
         int der = n;
-        boolean b = false;
+        int b = 0;
         int cen = 0;
 
-        while (izq <= der && b) {
-            cen = (int) (izq + der) / 2;
+        while (izq <= der && b == 0) {
+            cen = (int) ((izq + der) / 2);
             if (x == v[cen]) {
-                b = true;
+                b = 1;
             } else { // Se redefine el intervalo de busqueda
                 if (x > v[cen]) {
                     izq = cen + 1;
@@ -20,7 +20,7 @@ public class BusquedaBinaria {
                 }
             }
         }
-        if (b) {
+        if (b == 1) {
             return v[cen];
         }
         return -1;
