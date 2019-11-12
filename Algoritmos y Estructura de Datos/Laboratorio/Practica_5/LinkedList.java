@@ -3,6 +3,7 @@ package Laboratorio.Practica_5;
 public class LinkedList<T> {
 
     private Node first;
+    private int size;
 
     /**
      *
@@ -19,6 +20,7 @@ public class LinkedList<T> {
         n.setInfo(data);
         n.setSig(first);
         first = n;
+        size++;
     }
 
     /**
@@ -32,6 +34,7 @@ public class LinkedList<T> {
             n = first;
             first = first.getSig();
         }
+        size--;
         return n;
     }
 
@@ -54,6 +57,7 @@ public class LinkedList<T> {
             r.setSig(n);
             n.setSig(null);
         }
+        size++;
     }
 
     /**
@@ -68,6 +72,7 @@ public class LinkedList<T> {
             if (first.getSig() == null) {
                 n = first;
                 first = null;
+                size--;
                 return n;
             } else {
                 r = first;
@@ -81,6 +86,7 @@ public class LinkedList<T> {
             a.setSig(null);
             n = a;
         }
+        size--;
         return n;
     }
 
@@ -112,6 +118,7 @@ public class LinkedList<T> {
         if (act != null && ant == null) {
             Node ret = act;
             first = act.getSig();
+            size--;
             return ret;
         }
 
@@ -119,6 +126,18 @@ public class LinkedList<T> {
             ant.setSig(act.getSig());
         }
         return null;
+    }
+
+    public Node getFirst() {
+        return first;
+    }
+
+    public void setFirst(Node first) {
+        this.first = first;
+    }
+
+    public int size() {
+        return size;
     }
 
     public String toString() {

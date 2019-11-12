@@ -10,8 +10,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 
-import java.util.LinkedList;
-
 public class Controller {
 
     @FXML
@@ -26,7 +24,8 @@ public class Controller {
     private ColorPicker colorPicker;
     @FXML
     private ColorPicker colorPickerSearch;
-    private LinkedList<Button> linkedList = new LinkedList<Button>();
+    private LinkedList<Button> linkedList = new LinkedList<>();
+    private LinkedList<Button> auxList = new LinkedList<>();
     private double items = 0;
 
     /**
@@ -34,7 +33,7 @@ public class Controller {
      */
     public void printAction(int index) {
         textAreaActions.setText(textAreaActions.getText() +
-                linkedList.get(index).getBackground().getFills().get(0).getFill() + " tiene como siguiente " +
+                linkedList.search(index).getInfo().getBackground().getFills().get(0).getFill() + " tiene como siguiente " +
                 linkedList.get(index + 1).getBackground().getFills().get(0).getFill() + "\n");
     }
 
@@ -47,6 +46,7 @@ public class Controller {
             position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
                     new BackgroundFill(colorPicker.getValue(), null, null)));
+
 
             for (int i = 0; i < linkedList.size(); i++) {
                 if (linkedList.get(i).getBackground().getFills().get(0).getFill().equals(colorPickerSearch.getValue())) {
