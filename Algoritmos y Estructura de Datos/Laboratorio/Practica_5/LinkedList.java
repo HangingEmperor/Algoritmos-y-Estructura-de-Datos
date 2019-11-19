@@ -3,7 +3,7 @@ package Laboratorio.Practica_5;
 public class LinkedList<T> {
 
     private Node<T> first;
-    private int size = 0;
+    private int size;
 
     public LinkedList() {
         first = null;
@@ -14,7 +14,7 @@ public class LinkedList<T> {
         Node<T> n = new Node<>();
         n.setInfo(data);
         n.setSig(first);
-        first = n;
+        this.first = n;
         size++;
     }
 
@@ -32,8 +32,9 @@ public class LinkedList<T> {
         n.setInfo(data);
 
         if (first == null) {
-            n.setSig(first);
-            first = n;
+            System.out.println("x");
+            n.setSig(null);
+            this.first = n;
         } else {
             Node<T> r;
             r = first;
@@ -68,40 +69,28 @@ public class LinkedList<T> {
         size--;
     }
 
-    public Node<T> search(T data) {
+    public T search(T data) {
         Node<T> aux = first;
         while (aux != null && !aux.getInfo().equals(data)) {
             aux = aux.getSig();
         }
-        return aux;
+        return aux.getInfo();
     }
 
     public T get(int index) {
-        T elem = null;
+        Node<T> aux = first;
         if (index == 0) {
-            elem = this.getFirst();
-        } else if (index > this.size() | index < 0) {
-            System.out.println("El indice esta fuera de alcance");
+            return first.getInfo();
+        } else if (index > this.size) {
+            return null;
         } else {
-            LinkedList<T> newList = new LinkedList<T>();
-            int cont = 0;
-
-            while (this.first == null) {
-                if (index == cont) {
-                    elem = this.getFirst();
-                    newList.addFinal(this.getFirst());
-                    this.removeStart();
-                    cont++;
-                } else {
-                    newList.addFinal(this.getFirst());
-                    this.removeStart();
-                    cont++;
-                }
+            int x = 0;
+            while (x != index) {
+                aux = aux.getSig();
+                x++;
             }
-            this.first = newList.first;
-            this.size = newList.size;
         }
-        return elem;
+        return aux.getInfo();
     }
 
     public void add(T e, int index) {
@@ -125,11 +114,11 @@ public class LinkedList<T> {
                 }
             }
             this.first = newList.first;
-            this.size = newList.size;
+            this.size++;
         }
     }
 
-    public Node<T> remove(Node<T> data) {
+    public Node<T> remove(T data) {
         Node<T> act = first;
         Node<T> ant = null;
 

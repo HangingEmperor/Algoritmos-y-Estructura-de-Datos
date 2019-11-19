@@ -10,7 +10,7 @@ public class Node<T> {
         this.sig = null;
     }
 
-    Node(T info, Node sig) {
+    Node(T info, Node<T> sig) {
         this.info = info;
         this.sig = sig;
     }
