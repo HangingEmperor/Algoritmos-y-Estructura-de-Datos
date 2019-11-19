@@ -2,54 +2,40 @@ package Laboratorio.Practica_5;
 
 public class LinkedList<T> {
 
-    private Node first;
-    private int size;
+    private Node<T> first;
+    private int size = 0;
 
-    /**
-     *
-     */
     public LinkedList() {
         first = null;
+        size = 0;
     }
 
-    /**
-     * @param data
-     */
     public void addFirst(T data) {
-        Node n = new Node();
+        Node<T> n = new Node<>();
         n.setInfo(data);
         n.setSig(first);
         first = n;
         size++;
     }
 
-    /**
-     * @return
-     */
-    public Node removeStart() {
-        Node n;
+    public void removeStart() {
         if (first == null) {
-            return null;
+            System.out.println("La lista esta vacia");
         } else {
-            n = first;
-            first = first.getSig();
+            this.first = this.first.getSig();
+            size--;
         }
-        size--;
-        return n;
     }
 
-    /**
-     * @param data
-     */
     public void addFinal(T data) {
-        Node n = new Node();
+        Node<T> n = new Node<>();
         n.setInfo(data);
 
         if (first == null) {
             n.setSig(first);
             first = n;
         } else {
-            Node r;
+            Node<T> r;
             r = first;
             while (r.getSig() != null) {
                 r = r.getSig();
@@ -60,55 +46,92 @@ public class LinkedList<T> {
         size++;
     }
 
-    /**
-     * @return
-     */
-    public Node removeFinal() {
-        Node n;
-        Node r = new Node();
+    public void removeFinal() {
+        Node<T> r = new Node<>();
         if (first == null) {
-            return null;
+            System.out.println("La lista esta vacia");
         } else {
             if (first.getSig() == null) {
-                n = first;
                 first = null;
                 size--;
-                return n;
             } else {
                 r = first;
             }
-            Node a = new Node();
+            Node<T> a;
             a = r;
             while (r.getSig() != null) {
                 a = r;
                 r = r.getSig();
             }
             a.setSig(null);
-            n = a;
         }
         size--;
-        return n;
     }
 
-    /**
-     * @param data
-     * @return
-     */
-    public Node search(T data) {
-        Node aux = first;
+    public Node<T> search(T data) {
+        Node<T> aux = first;
         while (aux != null && !aux.getInfo().equals(data)) {
             aux = aux.getSig();
         }
         return aux;
     }
 
-    /**
-     * @param data
-     * @return
-     */
-    public Node remove(T data) {
-        Node act = first;
-        Node ant = null;
+    public T get(int index) {
+        T elem = null;
+        if (index == 0) {
+            elem = this.getFirst();
+        } else if (index > this.size() | index < 0) {
+            System.out.println("El indice esta fuera de alcance");
+        } else {
+            LinkedList<T> newList = new LinkedList<T>();
+            int cont = 0;
+
+            while (this.first == null) {
+                if (index == cont) {
+                    elem = this.getFirst();
+                    newList.addFinal(this.getFirst());
+                    this.removeStart();
+                    cont++;
+                } else {
+                    newList.addFinal(this.getFirst());
+                    this.removeStart();
+                    cont++;
+                }
+            }
+            this.first = newList.first;
+            this.size = newList.size;
+        }
+        return elem;
+    }
+
+    public void add(T e, int index) {
+        if (index == 0) {
+            this.addFirst(e);
+        } else if (index == this.size) {
+            this.addFinal(e);
+        } else if (index > this.size() | index < 0) {
+            System.out.println("El indice esta fuera de alcance");
+        } else {
+            LinkedList<T> newList = new LinkedList<T>();
+            int cont = 0;
+            while (this.size == 0) {
+                if (index == cont) {
+                    newList.addFinal(e);
+                    cont++;
+                } else {
+                    newList.addFinal(this.getFirst());
+                    this.removeStart();
+                    cont++;
+                }
+            }
+            this.first = newList.first;
+            this.size = newList.size;
+        }
+    }
+
+    public Node<T> remove(Node<T> data) {
+        Node<T> act = first;
+        Node<T> ant = null;
 
         while (act != null && !act.getInfo().equals(data)) {
             ant = act;
@@ -116,10 +139,9 @@ public class LinkedList<T> {
         }
 
         if (act != null && ant == null) {
-            Node ret = act;
             first = act.getSig();
             size--;
-            return ret;
+            return act;
         }
 
         if (act != null && ant != null) {
@@ -128,12 +150,17 @@ public class LinkedList<T> {
         return null;
     }
 
-    public Node getFirst() {
-        return first;
+    public T getFirst() {
+        return first.getInfo();
     }
 
-    public void setFirst(Node first) {
-        this.first = first;
+    public T getLast() {
+        Node<T> last;
+        last = first;
+        while (last.getSig() != null) {
+            last = last.getSig();
+        }
+        return last.getInfo();
     }
 
     public int size() {

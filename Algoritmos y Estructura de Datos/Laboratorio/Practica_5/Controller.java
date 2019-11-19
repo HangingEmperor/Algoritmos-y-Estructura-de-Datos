@@ -29,37 +29,64 @@ public class Controller {
     private double items = 0;
 
     /**
-     * @param index
+     * @param event
      */
-    public void printAction(int index) {
-        textAreaActions.setText(textAreaActions.getText() +
-                linkedList.search(index).getInfo().getBackground().getFills().get(0).getFill() + " tiene como siguiente " +
-                linkedList.get(index + 1).getBackground().getFills().get(0).getFill() + "\n");
+    @FXML
+    public void insert(ActionEvent event) {
+        if (!listCopy.getChildren().isEmpty()) {
+            ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
+                    new BackgroundFill(colorPicker.getValue(), null, null)));
+
+            int listSize = 0;
+            listSize = linkedList.size();
+            System.out.println("size lista: " + linkedList.size());
+            for (int i = 0; i < listSize; i++) {
+                if (((Button) linkedList.getFirst()).getBackground().getFills().get(0).getFill().equals(colorPickerSearch.getValue())) {
+                    System.out.println("Size lista aux: " + auxList.size());
+                    for (int j = 0; j < i; j++) {
+                        System.out.println(((Button) linkedList.getFirst()).getBackground().getFills().get(0).getFill());
+                        linkedList.addFirst((Button) auxList.getFirst());
+                        auxList.removeStart();
+                    }
+                    System.out.println("post size: " + linkedList.size());
+                    linkedList.add((Button) listCopy.getChildren().get(0), i);
+                    list.getChildren().add(i, listCopy.getChildren().get(0));
+                    textAreaActions.setText(textAreaActions.getText() + " Se inserto el color: " +
+                            colorPickerSearch.getValue() + "\n");
+                    break;
+                } else {
+                    auxList.addFirst(linkedList.getFirst());
+                    linkedList.removeStart();
+                    System.out.println(((Button) auxList.getFirst()).getBackground().getFills().get(0).getFill());
+                }
+            }
+        }
     }
 
     /**
      * @param event
      */
     @FXML
-    public void insert(ActionEvent event) {
-        if (!listCopy.getChildren().isEmpty()) {
-            position.setMax(items++);
-            ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
-                    new BackgroundFill(colorPicker.getValue(), null, null)));
-
+    public void remove(ActionEvent event) {
+        if (!list.getChildren().isEmpty()) {
+            position.setMax(items--);
 
             for (int i = 0; i < linkedList.size(); i++) {
-                if (linkedList.get(i).getBackground().getFills().get(0).getFill().equals(colorPickerSearch.getValue())) {
-                    linkedList.add(i, ((Button) listCopy.getChildren().get(0)));
-                    list.getChildren().add(i, listCopy.getChildren().get(0));
-                    textAreaActions.setText(textAreaActions.getText() + " Se inserto el color: " +
-                            linkedList.get(0).getBackground().getFills().get(0).getFill() + "\n");
-                    if (linkedList.size() > 1)
-                        printAction(i);
-                    break;
-                } else if (i == linkedList.size() - 1) {
-                    textAreaActions.setText(textAreaActions.getText() + " No se encontro el color: " +
-                            colorPickerSearch.getValue());
+                if (((Button) linkedList.getFirst()).getBackground().getFills().get(0).getFill().equals(colorPickerSearch.getValue())) {
+                    for (int j = 0; j < i; j++) {
+                        linkedList.addFirst(auxList.getLast());
+                        auxList.removeFinal();
+                    }
+                    listCopy.getChildren().add(list.getChildren().get(i));
+                    textAreaActions.setText(textAreaActions.getText() + "Se removio: " +
+                            linkedList.remove(linkedList.search(linkedList.getFirst())) + "\n");
+                } else {
+                    auxList.addFinal(linkedList.getFirst());
+                    linkedList.removeStart();
+                    if (i + 1 == linkedList.size()) {
+                        textAreaActions.setText(textAreaActions.getText() + " No se encontro el color: " +
+                                colorPickerSearch.getValue());
+                    }
                 }
             }
         }
@@ -71,15 +98,13 @@ public class Controller {
     @FXML
     public void insertStart(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
-            position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
                     new BackgroundFill(colorPicker.getValue(), null, null)));
-            linkedList.addFirst(((Button) listCopy.getChildren().get(0)));
+            linkedList.addFirst((Button) listCopy.getChildren().get(0));
+            System.out.println("Agregado: " + ((Button) linkedList.getFirst()).getBackground().getFills().get(0).getFill());
             list.getChildren().add(0, listCopy.getChildren().get(0));
             textAreaActions.setText(textAreaActions.getText() + " Se inserto al inicio el color: " +
-                    linkedList.get(0).getBackground().getFills().get(0).getFill() + "\n");
-            if (linkedList.size() > 1)
-                printAction(0);
+                    colorPicker.getValue() + "\n");
         }
     }
 
@@ -92,31 +117,10 @@ public class Controller {
             position.setMax(items++);
             ((Button) listCopy.getChildren().get(0)).setBackground(new Background(
                     new BackgroundFill(colorPicker.getValue(), null, null)));
-            linkedList.addLast(((Button) listCopy.getChildren().get(0)));
+            linkedList.addFinal(((Button) listCopy.getChildren().get(0)));
             list.getChildren().add(listCopy.getChildren().get(0));
             textAreaActions.setText(textAreaActions.getText() + " Se inserto al final el color: " +
-                    linkedList.get(0).getBackground().getFills().get(0).getFill() + " tiene como siguiente null. \n");
-        }
-    }
-
-    /**
-     * @param event
-     */
-    @FXML
-    public void remove(ActionEvent event) {
-        if (!list.getChildren().isEmpty()) {
-            position.setMax(items--);
-            for (int i = 0; i < linkedList.size(); i++) {
-                if (linkedList.get(i).getBackground().getFills().get(0).getFill().equals(colorPickerSearch.getValue())) {
-                    listCopy.getChildren().add(list.getChildren().get(i));
-                    textAreaActions.setText(textAreaActions.getText() + "Se removio: " +
-                            linkedList.remove(i).getBackground().getFills().get(0).getFill() + "\n");
-                    break;
-                } else if (i == linkedList.size() - 1) {
-                    textAreaActions.setText(textAreaActions.getText() + "No se encontro el color:" +
-                            colorPickerSearch.getValue() + "\n");
-                }
-            }
+                    colorPicker.getValue() + "\n");
         }
     }
 
@@ -129,7 +133,8 @@ public class Controller {
             position.setMax(items--);
             listCopy.getChildren().add(list.getChildren().get(0));
             textAreaActions.setText(textAreaActions.getText() + "Se removio: " +
-                    linkedList.removeFirst() + "\n");
+                    linkedList.getFirst() + "\n");
+            linkedList.removeStart();
         }
     }
 
@@ -142,7 +147,8 @@ public class Controller {
             position.setMax(items--);
             listCopy.getChildren().add(list.getChildren().get(list.getChildren().size() - 1));
             textAreaActions.setText(textAreaActions.getText() + "Se removio: " +
-                    linkedList.removeLast() + "\n");
+                    linkedList.getLast() + "\n");
+            linkedList.removeFinal();
         }
     }
 }

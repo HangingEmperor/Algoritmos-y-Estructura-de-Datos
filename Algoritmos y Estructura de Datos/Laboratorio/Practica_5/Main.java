@@ -7,12 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * El programa consiste en realizar una torre de hanoi animando sus movimientos de forma visual para el usuario.
+ * El programa consiste en representar de forma visual el uso de LinkedList.
  *
  * @author Omar Flores Salazar
  */
 public class Main extends Application {
-
     /**
      * @param args Argumentos para consola
      */
@@ -28,7 +27,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
         primaryStage.setTitle("Listas simplemente ligadas");
-        primaryStage.setScene(new Scene(root, 950, 305));
+        primaryStage.setScene(new Scene(root, 600, 305));
         primaryStage.show();
     }
 }

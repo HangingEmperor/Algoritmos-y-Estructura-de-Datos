@@ -3,11 +3,8 @@ package Laboratorio.Practica_5;
 public class Node<T> {
 
     private T info;
-    private Node sig;
+    private Node<T> sig;
 
-    /**
-     *
-     */
     public Node() {
         this.info = null;
         this.sig = null;
@@ -22,18 +19,15 @@ public class Node<T> {
         return info;
     }
 
-    /**
-     * @param info
-     */
     public void setInfo(T info) {
         this.info = info;
     }
 
-    Node getSig() {
+    Node<T> getSig() {
         return sig;
     }
 
-    void setSig(Node sig) {
+    void setSig(Node<T> sig) {
         this.sig = sig;
     }
 }
