@@ -27,7 +27,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
         primaryStage.setTitle("Listas simplemente ligadas");
-        primaryStage.setScene(new Scene(root, 600, 305));
+        primaryStage.setScene(new Scene(root, 600, 250));
         primaryStage.show();
     }
 }

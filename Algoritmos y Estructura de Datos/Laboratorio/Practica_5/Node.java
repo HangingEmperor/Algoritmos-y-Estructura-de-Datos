@@ -1,25 +1,20 @@
 package Laboratorio.Practica_5;
 
-public class Node<T> {
+class Node<T> {
 
     private T info;
     private Node<T> sig;
 
-    public Node() {
+    Node() {
         this.info = null;
         this.sig = null;
-    }
-
-    Node(T info, Node<T> sig) {
-        this.info = info;
-        this.sig = sig;
     }
 
     T getInfo() {
         return info;
     }
 
-    public void setInfo(T info) {
+    void setInfo(T info) {
         this.info = info;
     }
 

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+            minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
             fx:controller="Laboratorio.Practica_5.Controller">
     <children>
         <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="20.0" layoutY="14.0" prefHeight="90.0"
@@ -25,22 +25,19 @@
             </rowConstraints>
         </GridPane>
         <HBox fx:id="list" layoutX="20.0" layoutY="14.0" prefHeight="90.0" prefWidth="571.0"/>
-        <Slider fx:id="position" blockIncrement="1.0" layoutX="13.0" layoutY="129.0" majorTickUnit="1.0" max="0.0"
-                minorTickCount="0" prefHeight="31.0" prefWidth="585.0" showTickLabels="true" showTickMarks="true"
-                snapToTicks="true"/>
-        <ColorPicker fx:id="colorPicker" editable="true" layoutX="14.0" layoutY="188.0" prefHeight="25.0"
+        <ColorPicker fx:id="colorPicker" editable="true" layoutX="12.0" layoutY="133.0" prefHeight="25.0"
                      prefWidth="235.0"/>
-        <Button layoutX="266.0" layoutY="188.0" mnemonicParsing="false" onAction="#insertStart" prefHeight="25.0"
+        <Button layoutX="264.0" layoutY="133.0" mnemonicParsing="false" onAction="#insertStart" prefHeight="25.0"
                 prefWidth="141.0" text="Insertar al inicio"/>
-        <Button layoutX="266.0" layoutY="225.0" mnemonicParsing="false" onAction="#insertEnd" prefHeight="25.0"
+        <Button layoutX="264.0" layoutY="170.0" mnemonicParsing="false" onAction="#insertEnd" prefHeight="25.0"
                 prefWidth="141.0" text="Insertar al final"/>
-        <Button defaultButton="true" layoutX="442.0" layoutY="262.0" mnemonicParsing="false" onAction="#remove"
+        <Button defaultButton="true" layoutX="440.0" layoutY="207.0" mnemonicParsing="false" onAction="#remove"
                 prefHeight="25.0" prefWidth="149.0" text="Eliminar desde color"/>
-        <Button defaultButton="true" layoutX="441.0" layoutY="188.0" mnemonicParsing="false" onAction="#removeFirst"
+        <Button defaultButton="true" layoutX="439.0" layoutY="133.0" mnemonicParsing="false" onAction="#removeFirst"
                 text="Eliminar primer elemento"/>
-        <Button defaultButton="true" layoutX="442.0" layoutY="225.0" mnemonicParsing="false" onAction="#removeEnd"
+        <Button defaultButton="true" layoutX="440.0" layoutY="170.0" mnemonicParsing="false" onAction="#removeEnd"
                 text="Eliminar ultimo elemento"/>
-        <Button layoutX="266.0" layoutY="262.0" mnemonicParsing="false" onAction="#insert" prefHeight="25.0"
+        <Button layoutX="264.0" layoutY="207.0" mnemonicParsing="false" onAction="#insert" prefHeight="25.0"
                 prefWidth="141.0" text="Insertar desde color"/>
         <HBox fx:id="listCopy" layoutX="20.0" layoutY="355.0" prefHeight="90.0" prefWidth="571.0">
             <children>
@@ -56,7 +53,6 @@
                 <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="60.0"/>
             </children>
         </HBox>
-        <TextArea fx:id="textAreaActions" layoutX="603.0" layoutY="14.0" prefHeight="273.0" prefWidth="336.0"/>
-        <ColorPicker fx:id="colorPickerSearch" layoutX="13.0" layoutY="262.0" prefHeight="25.0" prefWidth="235.0"/>
+        <ColorPicker fx:id="colorPickerSearch" layoutX="11.0" layoutY="207.0" prefHeight="25.0" prefWidth="235.0"/>
     </children>
 </AnchorPane>

@@ -5,12 +5,12 @@ public class LinkedList<T> {
     private Node<T> first;
     private int size;
 
-    public LinkedList() {
+    LinkedList() {
         first = null;
         size = 0;
     }
 
-    public void addFirst(T data) {
+    void addFirst(T data) {
         Node<T> n = new Node<>();
         n.setInfo(data);
         n.setSig(first);
@@ -18,46 +18,44 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void removeStart() {
-        if (first == null) {
+    void removeStart() {
+        if (first == null)
             System.out.println("La lista esta vacia");
-        } else {
+        else {
             this.first = this.first.getSig();
             size--;
         }
     }
 
-    public void addFinal(T data) {
+    void addFinal(T data) {
         Node<T> n = new Node<>();
         n.setInfo(data);
 
         if (first == null) {
-            System.out.println("x");
             n.setSig(null);
             this.first = n;
         } else {
             Node<T> r;
             r = first;
-            while (r.getSig() != null) {
+            while (r.getSig() != null)
                 r = r.getSig();
-            }
             r.setSig(n);
             n.setSig(null);
         }
         size++;
     }
 
-    public void removeFinal() {
+    void removeFinal() {
         Node<T> r = new Node<>();
-        if (first == null) {
+        if (first == null)
             System.out.println("La lista esta vacia");
-        } else {
+        else {
             if (first.getSig() == null) {
                 first = null;
                 size--;
-            } else {
+            } else
                 r = first;
-            }
+
             Node<T> a;
             a = r;
             while (r.getSig() != null) {
@@ -69,21 +67,21 @@ public class LinkedList<T> {
         size--;
     }
 
-    public T search(T data) {
+    T search(T data) {
         Node<T> aux = first;
-        while (aux != null && !aux.getInfo().equals(data)) {
+        while (aux != null && !aux.getInfo().equals(data))
             aux = aux.getSig();
-        }
+        assert aux != null;
         return aux.getInfo();
     }
 
     public T get(int index) {
         Node<T> aux = first;
-        if (index == 0) {
+        if (index == 0)
             return first.getInfo();
-        } else if (index > this.size) {
+        else if (index > this.size)
             return null;
-        } else {
+        else {
             int x = 0;
             while (x != index) {
                 aux = aux.getSig();
@@ -94,14 +92,14 @@ public class LinkedList<T> {
     }
 
     public void add(T e, int index) {
-        if (index == 0) {
+        if (index == 0)
             this.addFirst(e);
-        } else if (index == this.size) {
+        else if (index == this.size)
             this.addFinal(e);
-        } else if (index > this.size() | index < 0) {
+        else if (index > this.size() | index < 0)
             System.out.println("El indice esta fuera de alcance");
-        } else {
-            LinkedList<T> newList = new LinkedList<T>();
+        else {
+            LinkedList<T> newList = new LinkedList<>();
             int cont = 0;
             while (this.size == 0) {
                 if (index == cont) {
@@ -133,17 +131,16 @@ public class LinkedList<T> {
             return act;
         }
 
-        if (act != null && ant != null) {
+        if (act != null)
             ant.setSig(act.getSig());
-        }
         return null;
     }
 
-    public T getFirst() {
+    T getFirst() {
         return first.getInfo();
     }
 
-    public T getLast() {
+    T getLast() {
         Node<T> last;
         last = first;
         while (last.getSig() != null) {
@@ -157,13 +154,13 @@ public class LinkedList<T> {
     }
 
     public String toString() {
-        String x = "";
+        StringBuilder x = new StringBuilder();
 
         Node aux = first;
         while (aux != null) {
-            x += "" + aux.getInfo() + (aux.getSig() != null ? ", " : "");
+            x.append(aux.getInfo()).append(aux.getSig() != null ? ", " : "");
             aux = aux.getSig();
         }
-        return x;
+        return x.toString();
     }
 }
