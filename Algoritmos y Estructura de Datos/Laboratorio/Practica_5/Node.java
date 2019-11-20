@@ -1,5 +1,11 @@
 package Laboratorio.Practica_5;
 
+/**
+ * Clase que crea un nodo de referencia con su nodo siguiente y su informacion.
+ *
+ * @param <T> Parametro para recibir cualquier tipo de Objeto.
+ * @author Omar Flores Salazar
+ */
 class Node<T> {
 
     private T info;

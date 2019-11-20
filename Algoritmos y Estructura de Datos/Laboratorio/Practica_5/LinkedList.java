@@ -1,5 +1,11 @@
 package Laboratorio.Practica_5;
 
+/**
+ * Clase con distintos metodos para trabajar con una estructura de datos dinamica.
+ *
+ * @param <T> Parametro para recibir cualquier objeto.
+ * @author Omar Flores Salazar
+ */
 public class LinkedList<T> {
 
     private Node<T> first;
@@ -75,6 +81,12 @@ public class LinkedList<T> {
         return aux.getInfo();
     }
 
+    /**
+     * Funcion para obtener la informacion de un objeto en la estructura a base de una posicion dada.
+     *
+     * @param index Recibe una posicion para obtenerlo en la estructura.
+     * @return Retorna la informacion del objeto en la estructura.
+     */
     public T get(int index) {
         Node<T> aux = first;
         if (index == 0)
@@ -91,6 +103,10 @@ public class LinkedList<T> {
         return aux.getInfo();
     }
 
+    /**
+     * @param e     Recibe un Object el cual se usara para agregar.
+     * @param index Recibe una posicion para colocarlo en la estructura.
+     */
     public void add(T e, int index) {
         if (index == 0)
             this.addFirst(e);
@@ -116,6 +132,12 @@ public class LinkedList<T> {
         }
     }
 
+    /**
+     * Funcion que remueve un objeto en la estructura a base de un objeto dado y retorna su nodo.
+     *
+     * @param data Recibe un Object el cual se usara para buscar y eliminar.
+     * @return Retorna el nodo en el que se encontraba el elemento al ser eliminado.
+     */
     public Node<T> remove(T data) {
         Node<T> act = first;
         Node<T> ant = null;
@@ -149,6 +171,11 @@ public class LinkedList<T> {
         return last.getInfo();
     }
 
+    /**
+     * Funcion que regresa el tamaño de la estructura de datos.
+     *
+     * @return Retorna un valor entero con el tamaño de los apuntadores.
+     */
     public int size() {
         return size;
     }

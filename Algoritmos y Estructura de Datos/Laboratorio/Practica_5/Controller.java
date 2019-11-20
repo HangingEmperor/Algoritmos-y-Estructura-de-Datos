@@ -8,6 +8,11 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 
+/**
+ * Clase para manejar el control entre interfaz y controlador en el programa.
+ *
+ * @author Omar Flores Salazar
+ */
 public class Controller {
 
     @FXML
@@ -21,6 +26,11 @@ public class Controller {
     private LinkedList<Button> linkedList = new LinkedList<>();
     private LinkedList<Button> aux = new LinkedList<>();
 
+    /**
+     * Funcion que inserta de forma visual un color.
+     *
+     * @param event Evento generado por una accion.
+     */
     @FXML
     public void insert(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
@@ -45,6 +55,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Funcion para remover de forma visual un color.
+     *
+     * @param event Evento generado por una accion.
+     */
     @FXML
     public void remove(ActionEvent event) {
         if (!list.getChildren().isEmpty())
@@ -64,6 +79,11 @@ public class Controller {
                 }
     }
 
+    /**
+     * Funcion para insertar desde el principio de forma visual un color.
+     *
+     * @param event Evento generado por una accion.
+     */
     @FXML
     public void insertStart(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
@@ -74,6 +94,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Funcion para insertar desde el final de forma visual un color.
+     *
+     * @param event Evento generado por una accion.
+     */
     @FXML
     public void insertEnd(ActionEvent event) {
         if (!listCopy.getChildren().isEmpty()) {
@@ -84,6 +109,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Funcion para remover desde el principio de forma visual un color.
+     *
+     * @param event Evento generado por una accion.
+     */
     @FXML
     public void removeFirst(ActionEvent event) {
         if (!list.getChildren().isEmpty()) {
@@ -92,6 +122,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Funcion para remover desde el final de forma visual un color.
+     *
+     * @param event Evento generado por una accion.
+     */
     @FXML
     public void removeEnd(ActionEvent event) {
         if (!list.getChildren().isEmpty()) {
